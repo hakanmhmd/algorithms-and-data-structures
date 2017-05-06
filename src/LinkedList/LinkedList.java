@@ -90,12 +90,44 @@ public class LinkedList<T> {
 
         if(current == null){
             System.out.println("Node with such key does not exist.");
-        } else {
-            Node<T> newNode = new Node<T>(data);
-            newNode.next = current.next;
-            current.next = newNode;
-            listCount++;
+            return;
         }
+        Node<T> newNode = new Node<T>(data);
+        newNode.next = current.next;
+        current.next = newNode;
+        listCount++;
+    }
+
+    // Inserts a node before the node containing key
+    public void addBefore(T key, T data){
+        if(head == null){
+            return;
+        }
+        if(head.data.equals(key)){
+            addFirst(data);
+            return;
+        }
+
+        Node<T> current = head;
+        Node<T> previous = null;
+
+        while(current != null){
+            if(current.data.equals(key)){
+                break;
+            }
+            previous = current;
+            current = current.next;
+        }
+
+        if(current == null){
+            System.out.println("Element does not exist.");
+            return;
+        }
+
+        Node<T> newNode = new Node<T>(data);
+        newNode.next = current;
+        previous.next = newNode;
+        listCount++;
     }
 
     public boolean contains(T data) {
@@ -158,6 +190,29 @@ public class LinkedList<T> {
         listCount--;
     }
 
+    public void removeAtIndex(int index){
+        if(head == null){
+            System.out.println("Can't delete");
+            return;
+        }
+        if(index == 0){
+            head = head.next;
+            return;
+        }
+        Node<T> current = head;
+
+        for (int i = 0; i < index-1 && current!=null; i++) {
+             current = current.next;
+        }
+        if(current == null || current.next == null){
+            System.out.println("Index out of bounds.");
+            return;
+        }
+
+        current.next = current.next.next;
+        listCount--;
+    }
+
     public int size(){
         return listCount;
     }
@@ -187,6 +242,18 @@ public class LinkedList<T> {
         return head == null;
     }
 
+    // O(n) - deep copy
+    public LinkedList<T> deepCopy(){
+        LinkedList<T> copy = new LinkedList<T>();
+        Node<T> current = head;
+        while (current != null){
+            copy.addFirst(current.data);
+            current = current.next;
+        }
+        return copy.reverse();
+    }
+
+
 
     public static void main(String[] args) {
         LinkedList<Integer> list = new LinkedList<Integer>();
@@ -203,6 +270,14 @@ public class LinkedList<T> {
         reversed.printList();
 
         list.addAfter(50, 5);
+
+        list.printList();
+
+        list.addBefore(10, 5);
+
+        list.printList();
+
+        list.removeAtIndex(0);
 
         list.printList();
 
