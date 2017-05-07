@@ -1,5 +1,6 @@
 package LinkedList;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -197,6 +198,7 @@ public class LinkedList<T> {
         }
         if(index == 0){
             head = head.next;
+            listCount--;
             return;
         }
         Node<T> current = head;
@@ -253,6 +255,22 @@ public class LinkedList<T> {
         return copy.reverse();
     }
 
+    public void removeDuplicates(){
+        Node<T> current = head;
+        Node<T> previous = null;
+        HashSet<T> set = new HashSet<>();
+        while(current != null){
+            if(set.contains(current.data)){
+                previous.next = current.next;
+                listCount--;
+            } else {
+                set.add(current.data);
+                previous = current;
+            }
+            current = current.next;
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -278,6 +296,13 @@ public class LinkedList<T> {
         list.printList();
 
         list.removeAtIndex(0);
+
+        list.addFirst(5);
+        list.addFirst(10);
+
+        System.out.println(list.size());
+
+        list.removeDuplicates();
 
         list.printList();
 
