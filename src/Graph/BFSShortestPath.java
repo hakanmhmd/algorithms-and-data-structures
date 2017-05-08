@@ -1,25 +1,24 @@
 package Graph;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- *  BFS O(V+E) where V is the number of vertices and E is the number of edges
- *  Uses of BFS
- *    shortest path
- *    p2p networks
- *    social networks
- *
  *
  */
-public class BreadthFirstSearch {
+public class BFSShortestPath {
     private static  SimpleGraph g = new SimpleGraph(9);
 
-    public static void BFS(SimpleGraph g, int start){
+    public static void BFSShortestPath(SimpleGraph g, int start, int end){
         // keep track of the visited nodes - mark as not visited at the beginning
         boolean[] visited = new boolean[g.getCount()];
-
+        int[] prev = new int[g.getCount()];
+        for (int i = 0; i < prev.length; i++) {
+            prev[i] = -1; //prev[x] = y means vertex x was visited right after vertex y
+        }
         // create a queue using a linkedlist
         LinkedList<Integer> queue = new LinkedList<>();
 
@@ -30,7 +29,6 @@ public class BreadthFirstSearch {
         while(queue.size() != 0){
             // dequeue the element from the queue
             int element = queue.poll();
-            System.out.print(element + " ");
 
             //for each of its neighbours (adjacent vertices)
             // if not visited, mark it visited and enqueue
@@ -39,11 +37,23 @@ public class BreadthFirstSearch {
                 int next = i.next();
                 if(!visited[next]){
                     visited[next] = true;
+                    prev[next] = element;
                     queue.add(next);
                 }
             }
 
         }
+
+        //printing the path - from end to start
+        int currentV = end;
+        ArrayList<Integer> path = new ArrayList<>();
+        while(prev[currentV] != -1){
+            path.add(currentV);
+            currentV = prev[currentV];
+        }
+        path.add(start);
+        Collections.reverse(path);
+        System.out.println(path);
     }
 
     public static void main(String[] args) {
@@ -58,6 +68,6 @@ public class BreadthFirstSearch {
         g.addEdge(8, 7);
         g.addEdge(7, 2);
 
-        BFS(g, 0);
+        BFSShortestPath(g, 0, 7);
     }
 }
