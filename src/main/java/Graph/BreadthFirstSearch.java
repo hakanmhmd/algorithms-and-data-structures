@@ -21,7 +21,7 @@ public class BreadthFirstSearch {
         boolean[] visited = new boolean[g.getCount()];
 
         // create a queue using a linkedlist
-        LinkedList<Integer> queue = new LinkedList<>();
+        LinkedList<Integer> queue = new LinkedList<Integer>();
 
         // mark start node as visited
         visited[start] = true;

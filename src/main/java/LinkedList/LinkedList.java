@@ -258,7 +258,7 @@ public class LinkedList<T> {
     public void removeDuplicates(){
         Node<T> current = head;
         Node<T> previous = null;
-        HashSet<T> set = new HashSet<>();
+        HashSet<T> set = new HashSet<T>();
         while(current != null){
             if(set.contains(current.data)){
                 previous.next = current.next;

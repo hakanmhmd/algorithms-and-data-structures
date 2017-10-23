@@ -21,7 +21,7 @@ public class PairSum {
     }
 
     private static void findPairs(int[] arr, int sum) {
-        Map<Integer, Boolean> map = new HashMap<>();
+        Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
 
         for (int i = 0; i < arr.length; i++) {
             int difference = sum - arr[i];

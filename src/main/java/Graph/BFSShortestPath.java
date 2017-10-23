@@ -20,7 +20,7 @@ public class BFSShortestPath {
             prev[i] = -1; //prev[x] = y means vertex x was visited right after vertex y
         }
         // create a queue using a linkedlist
-        LinkedList<Integer> queue = new LinkedList<>();
+        LinkedList<Integer> queue = new LinkedList<Integer>();
 
         // mark start node as visited
         visited[start] = true;
@@ -46,7 +46,7 @@ public class BFSShortestPath {
 
         //printing the path - from end to start
         int currentV = end;
-        ArrayList<Integer> path = new ArrayList<>();
+        ArrayList<Integer> path = new ArrayList<Integer>();
         while(prev[currentV] != -1){
             path.add(currentV);
             currentV = prev[currentV];

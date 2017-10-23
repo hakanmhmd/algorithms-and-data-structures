@@ -15,7 +15,7 @@ public class SimpleGraph {
         this.count = count;
         this.adjList = new LinkedList[count];
         for (int i = 0; i < count; i++) {
-             adjList[i] = new LinkedList<>();
+             adjList[i] = new LinkedList<Integer>();
 
         }
     }
