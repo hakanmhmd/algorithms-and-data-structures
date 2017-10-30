@@ -106,6 +106,7 @@ public class LRUCache<T> {
 
         cache.get(1);
         cache.get(2);
+        cache.set(1, "lala.com");
 
         cache.print();
 
