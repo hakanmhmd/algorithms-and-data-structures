@@ -31,6 +31,7 @@ public class LongestCommonSubsequence {
 
     }
 
+    //recursive solution - repetition - use memoization
     private int lcs(char[] X, char[] Y, int m, int n) {
         if(m==0 || n==0) return 0;
 
