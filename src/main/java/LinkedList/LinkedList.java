@@ -28,11 +28,13 @@ public class LinkedList<T> {
     }
 
     // O(1)
-    public void addFirst(T data){
+    public Node<T> addFirst(T data){
         Node<T> newNode = new Node<T>(data);
         newNode.next = head;
-        head = newNode;
         listCount++;
+        head = newNode;
+        return head;
+
     }
 
     public T removeFirst(){
@@ -47,11 +49,11 @@ public class LinkedList<T> {
 
     // O(n)
     // Optimization keep pointer to tail for O(1)
-    public void addLast(T data){
+    public Node<T> addLast(T data){
         Node<T> newNode = new Node<T>(data);
         if(head == null){
             addFirst(data);
-            return;
+            return head;
         }
 
         Node<T> current = head;
@@ -60,15 +62,16 @@ public class LinkedList<T> {
         }
         current.next = newNode;
         listCount++;
+        return head;
     }
 
     // Inserts at specific index
-    public void add(T data, int index){
+    public Node<T> add(T data, int index){
         Node<T> newNode = new Node<T>(data);
         Node<T> current = head;
         if(current == null){
             head = newNode;
-            return;
+            return head;
         }
         // go to the index or the end of list
         for (int i = 1; i < index && current.next != null; i++) {
@@ -77,6 +80,7 @@ public class LinkedList<T> {
         newNode.next = current.next;
         current.next = newNode;
         listCount++;
+        return head;
     }
 
     // Inserts a node after the node containing key
@@ -137,7 +141,7 @@ public class LinkedList<T> {
             return false;
         }
         while(current != null){
-            if(current.data .equals(data)){
+            if(current.data.equals(data)){
                 return true;
             }
             current = current.next;
@@ -151,7 +155,7 @@ public class LinkedList<T> {
             throw new IndexOutOfBoundsException();
         }
 
-        for(int i=0; i<index ; i++){
+        for(int i=0; i<index && current != null; i++){
             current = current.next;
         }
         if(current == null){
@@ -231,6 +235,21 @@ public class LinkedList<T> {
         return list;
     }
 
+    public Node<T> reverseRecursion(Node<T> current, Node<T> prev){
+        if(current.next == null){
+            head = current;
+
+            current.next = prev;
+            return null;
+        }
+
+        Node<T> newNext = current.next;
+        current.next = prev;
+        reverseRecursion(newNext, current);
+
+        return head;
+    }
+
     public void printList(){
         Node<T> temp = head;
         while(temp != null){
@@ -284,26 +303,20 @@ public class LinkedList<T> {
         list.remove(30);
 
         LinkedList<Integer> reversed = list.reverse();
-
         reversed.printList();
 
         list.addAfter(50, 5);
-
         list.printList();
 
         list.addBefore(10, 5);
-
         list.printList();
 
         list.removeAtIndex(0);
-
         list.addFirst(5);
         list.addFirst(10);
-
         System.out.println(list.size());
 
         list.removeDuplicates();
-
         list.printList();
 
         System.out.println(list.size());

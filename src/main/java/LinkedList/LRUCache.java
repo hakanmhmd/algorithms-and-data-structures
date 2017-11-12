@@ -1,6 +1,7 @@
 package LinkedList;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Hash table with pointers to Doubly linked lists
@@ -96,7 +97,7 @@ public class LRUCache<T> {
     }
 
     public static void main(String[] args) {
-        LRUCache<String> cache = new LRUCache<String>(10);
+        LRUCache<String> cache = new LRUCache<String>(3);
 
         cache.set(1, "bbc.co.uk");
         cache.set(2, "cnn.com");
@@ -104,12 +105,18 @@ public class LRUCache<T> {
         cache.set(4, "google.com");
         cache.print();
 
-        cache.get(1);
-        cache.get(2);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
         cache.set(1, "lala.com");
 
         cache.print();
 
+    }
+
+    private void printMap() {
+        for(Map.Entry<Integer, Node<T>> entry: map.entrySet()){
+            System.out.println(entry.getKey() + " " + entry.getValue().value);
+        }
     }
 
     private void print() {
