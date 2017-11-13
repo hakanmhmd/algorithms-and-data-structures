@@ -14,9 +14,9 @@ public class IsBST {
         }
     }
 
-    Node root;
+    static Node root;
 
-    Node prev = null;
+    static Node prev = null;
 
     public static void main(String args[])
     {
@@ -38,12 +38,13 @@ public class IsBST {
             System.out.println("Not a BST");
     }
 
-    private boolean isBST() {
+    public static boolean isBST() {
         if(root == null) return true;
         return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private boolean isBSTUtil(Node root, int minValue, int maxValue) {
+
+    private static boolean isBSTUtil(Node root, int minValue, int maxValue) {
         if(root == null) return true;
         if(root.data < minValue || root.data > maxValue){
             return false;
@@ -53,7 +54,7 @@ public class IsBST {
     }
 
     // Using in order traversal and no additional DS
-    private boolean isBST(Node node) {
+    private static boolean isBST(Node node) {
         if(node != null){
             if(!isBST(node.left)){
                 return false;

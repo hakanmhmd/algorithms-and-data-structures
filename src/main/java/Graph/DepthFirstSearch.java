@@ -16,6 +16,7 @@ public class DepthFirstSearch {
         // mark all unvisited
         boolean[] visited = new boolean[g.getCount()];
 
+        recursiveDFS(start, visited);
         // not every vertex is reachable (disconnected graphs)
         for (int i = 0; i < visited.length; i++) {
             if(!visited[i]){
