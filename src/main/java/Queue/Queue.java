@@ -7,5 +7,5 @@ package Queue;
 public interface Queue<Item> {
     void enqueue(Item i);
     Item dequeue();
-    Item pop();
+    Item peek();
 }

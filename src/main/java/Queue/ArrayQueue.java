@@ -50,7 +50,7 @@ public class ArrayQueue<Item> implements Queue<Item> {
 
     }
 
-    public Item pop(){
+    public Item peek(){
         if (isEmpty()) throw new EmptyStackException();
         return queue[0];
     }
