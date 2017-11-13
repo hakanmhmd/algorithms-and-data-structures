@@ -16,6 +16,8 @@ public class IsBST {
 
     Node root;
 
+    Node prev = null;
+
     public static void main(String args[])
     {
         IsBST tree = new IsBST();
@@ -26,6 +28,11 @@ public class IsBST {
         tree.root.left.right = new Node(3);
 
         if (tree.isBST())
+            System.out.println("IS BST");
+        else
+            System.out.println("Not a BST");
+
+        if (tree.isBST(tree.root))
             System.out.println("IS BST");
         else
             System.out.println("Not a BST");
@@ -43,5 +50,21 @@ public class IsBST {
         }
 
         return (isBSTUtil(root.left, minValue, root.data-1) && isBSTUtil(root.right, root.data+1, maxValue));
+    }
+
+    // Using in order traversal and no additional DS
+    private boolean isBST(Node node) {
+        if(node != null){
+            if(!isBST(node.left)){
+                return false;
+            }
+
+            if(prev != null && node.data < prev.data){
+                return false;
+            }
+            prev = node;
+            return isBST(node.right);
+        }
+        return true;
     }
 }
