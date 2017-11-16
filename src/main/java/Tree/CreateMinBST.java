@@ -19,6 +19,7 @@ public class CreateMinBST {
 
         TreeNode root = createMinimalBST(array);
         System.out.println("Root? " + root.key);
+        preOrder(root);
     }
 
     public static TreeNode createMinimalBST(int array[]) {
@@ -35,5 +36,12 @@ public class CreateMinBST {
         n.right = createMinimalBST(array, mid+1, end);
 
         return n;
+    }
+
+    private static void preOrder(TreeNode node){
+        if(node == null) return;
+        System.out.println(node.key);
+        preOrder(node.left);
+        preOrder(node.right);
     }
 }
