@@ -10,9 +10,6 @@ import java.util.Map;
  * it should invalidate the least recently used item before inserting a new item.
  */
 public class LRUCache<T> {
-
-    
-
     private class Node<T> {
         private Integer key;
         private T value;

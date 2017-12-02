@@ -1,18 +1,17 @@
 package LinkedList;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * Linkedlist implementation
  */
-public class LinkedList<T> {
+public class MyLinkedList<T> {
     // holds reference to the head
     private Node<T> head;
     private int listCount;
 
-    public LinkedList() {
+    public MyLinkedList() {
         head = null;
         listCount = 0;
     }
@@ -224,8 +223,8 @@ public class LinkedList<T> {
     }
 
     // O(n)
-    public LinkedList<T> reverse(){
-        LinkedList<T> list = new LinkedList<T>();
+    public MyLinkedList<T> reverse(){
+        MyLinkedList<T> list = new MyLinkedList<T>();
         Node<T> current = head;
 
         while(current != null){
@@ -264,8 +263,8 @@ public class LinkedList<T> {
     }
 
     // O(n) - deep copy
-    public LinkedList<T> deepCopy(){
-        LinkedList<T> copy = new LinkedList<T>();
+    public MyLinkedList<T> deepCopy(){
+        MyLinkedList<T> copy = new MyLinkedList<T>();
         Node<T> current = head;
         while (current != null){
             copy.addFirst(current.data);
@@ -293,7 +292,7 @@ public class LinkedList<T> {
 
 
     public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<Integer>();
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addLast(10);
         list.addFirst(0);
         list.addLast(20);
@@ -302,7 +301,7 @@ public class LinkedList<T> {
 
         list.remove(30);
 
-        LinkedList<Integer> reversed = list.reverse();
+        MyLinkedList<Integer> reversed = list.reverse();
         reversed.printList();
 
         list.addAfter(50, 5);

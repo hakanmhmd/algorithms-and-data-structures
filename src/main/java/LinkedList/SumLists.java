@@ -19,8 +19,8 @@ public class SumLists {
 
         System.out.println("  " + lA1.printForward());
         System.out.println("+ " + lB1.printForward());
-        LinkedListNode result = addLists(lA1, lB1, 0);
-        System.out.println(result.printForward());
+        LinkedListNode result = addLists2(lA1, lB1, 0);
+        System.out.println("  " + result.printForward());
     }
 
     private static LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carry) {
@@ -46,40 +46,34 @@ public class SumLists {
         return result;
     }
 
-    private static void addLists2(LinkedListNode l1, LinkedListNode l2, int carry) {
-        if (l1 == null || l2 == null) {
-            return;
+    private static LinkedListNode addLists2(LinkedListNode l1, LinkedListNode l2, int carry) {
+        carry = 0;
+        LinkedListNode result = new LinkedListNode();
+        LinkedListNode p1 = l1;
+        LinkedListNode p2 = l2;
+        LinkedListNode p3 = result;
+
+        while(p1 != null || p2 != null){
+            if(p1 != null){
+                carry += p1.data;
+                p1 = p1.next;
+            }
+
+            if(p2 != null){
+                carry += p2.data;
+                p2 = p2.next;
+            }
+
+            p3.setNext(new LinkedListNode(carry % 10));
+            p3 = p3.next;
+           
+            carry /= 10;
         }
 
-        int value = carry;
-
-        while(l1 != null && l2 != null){
-            value += l1.data;
-            value += l2.data;
-
-            System.out.print(value % 10 + " -> ");
-            int newCarry = value >= 10 ? 1 : 0;
-            value = newCarry;
-
-            l1 = l1.next;
-            l2 = l2.next;
+        if(carry == 1){
+            p3.data = 1;
         }
 
-        while(l1 != null){
-            value += l1.data;
-            System.out.print(value % 10 + " -> ");
-            int newCarry = value >= 10 ? 1 : 0;
-            value = newCarry;
-            l1 = l1.next;
-        }
-
-        while(l2 != null){
-            value += l2.data;
-            System.out.print(value % 10 + " -> ");
-            int newCarry = value >= 10 ? 1 : 0;
-            value = newCarry;
-            l2 = l2.next;
-        }
-
+        return result.next;
     }
 }

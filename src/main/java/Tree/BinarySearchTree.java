@@ -28,4 +28,52 @@ public class BinarySearchTree {
 
         return root;
     }
+
+
+
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(5);
+        tree.insert(1);
+        tree.insert(7);
+        tree.insert(8);
+        tree.insert(4);
+        tree.insert(20);
+        tree.insert(15);
+
+        preorderTraversal(tree.root);
+        System.out.println();
+        inorderTraversal(tree.root);
+        System.out.println();
+        postorderTraversal(tree.root);
+    }
+
+    private static void postorderTraversal(TreeNode root) {
+        if(root == null){
+            return;
+        }
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+        System.out.print(root.key + " ");
+    }
+
+    private static void inorderTraversal(TreeNode root) {
+        if(root == null){
+            return;
+        }
+        preorderTraversal(root.left);
+        System.out.print(root.key + " ");
+        preorderTraversal(root.right);
+    }
+
+    private static void preorderTraversal(TreeNode root) {
+        if(root == null){
+            return;
+        }
+        System.out.print(root.key + " ");
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+    }
+
+
 }

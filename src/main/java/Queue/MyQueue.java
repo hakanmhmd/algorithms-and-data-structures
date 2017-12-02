@@ -3,7 +3,7 @@ package Queue;
 import java.util.NoSuchElementException;
 
 /**
- * Queue implementation using LinkedList
+ * Queue implementation using MyLinkedList
  */
 public class MyQueue<T> implements Queue<T> {
     private static class MyQueueNode<T> {
