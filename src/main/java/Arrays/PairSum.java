@@ -1,7 +1,7 @@
 package Arrays;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Given an array and a number x, check for pairs in the array with sum x
@@ -21,15 +21,15 @@ public class PairSum {
     }
 
     private static void findPairs(int[] arr, int sum) {
-        Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+        Set<Integer> set = new HashSet<>();
 
         for (int i = 0; i < arr.length; i++) {
             int difference = sum - arr[i];
 
-            if(map.containsKey(difference)){
+            if(set.contains(difference)){
                 System.out.println("Pair (" + arr[i] + ", " + difference + ")");
             }
-            map.put(arr[i], true);
+            set.add(arr[i]);
         }
     }
 }

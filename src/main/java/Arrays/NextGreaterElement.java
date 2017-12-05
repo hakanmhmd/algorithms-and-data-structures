@@ -1,5 +1,8 @@
 package Arrays;
 
+import com.sun.tools.javac.util.Pair;
+
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -11,34 +14,35 @@ public class NextGreaterElement {
     public static void main(String[] args)
     {
         int arr[] = { 11, 13, 8, 9, 14, 21, 3, 2, 1 };
-        printNGE(arr);
+        findNGE(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
-    private static void printNGE(int[] arr) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(arr[0]);
+    private static void findNGE(int[] arr) {
+        Stack<Pair<Integer, Integer>> stack = new Stack<>(); // pair (number, index)
+        stack.push(new Pair<>(arr[0], 0));
+
 
         for (int i = 1; i < arr.length; i++) {
             int current = arr[i];
             if(!stack.isEmpty()){
-                Integer element = stack.pop();
-                while(element < current){
-                    System.out.println(element + " -> " + current);
+                Pair<Integer, Integer> top = stack.peek();
+                while(current > top.fst){
+                    arr[top.snd] = current;
+                    stack.pop();
                     if(stack.isEmpty()){
                         break;
                     }
-                    element = stack.pop();
-                }
-                if(element > current){
-                    stack.push(element);
+
+                    top = stack.peek();
                 }
             }
-            stack.push(current);
+            stack.push(new Pair<>(current, i));
         }
 
         while(!stack.isEmpty()){
-            Integer element = stack.pop();
-            System.out.println(element + " -> null");
+            Pair<Integer, Integer> element = stack.pop();
+            arr[element.snd] = -1;
         }
     }
 }

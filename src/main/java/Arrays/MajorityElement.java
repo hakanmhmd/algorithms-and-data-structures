@@ -6,7 +6,7 @@ package Arrays;
  */
 public class MajorityElement {
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 2, 3, 5, 2, 6, 2};
+        int[] arr = new int[]{2, 2, 3, 5, 2, 6, 2, 2, 5};
 
         // First method
         int candidate = findMajorityElementCandidate(arr);

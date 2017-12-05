@@ -1,11 +1,10 @@
 package Arrays;
 
 /**
- * Created by hakanmehmed on 12/11/2017.
+ * Find max element in sorted rotated array
  */
 public class MaxElementInSortedRotatedArray {
 
-    // Driver Program
     public static void main (String[] args)
     {
         int arr1[] =  {5, 6, 1, 2, 3, 4};

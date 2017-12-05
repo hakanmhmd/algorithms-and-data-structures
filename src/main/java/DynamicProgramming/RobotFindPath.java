@@ -17,7 +17,7 @@ public class RobotFindPath {
     public static void main(String[] args) {
         boolean[][] maze = {
                 {true, true, true, true},
-                {false, true, false, true},
+                {false, true, true, true},
                 {true, true, true, true},
                 {false, false, false, true}
         };
@@ -69,7 +69,7 @@ public class RobotFindPath {
         int[][] auxMatrix = new int[maze.length][maze[0].length];
 
 
-        // copy last row
+        // copy last col
         for(int i=lastCol; i>=0; i--){
             auxMatrix[lastRow][i] = maze[lastRow][i] ? 1 : 0;
         }

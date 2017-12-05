@@ -32,7 +32,7 @@ public class IsPalindrome {
         LinkedListNode slow = head;
         LinkedListNode fast = head;
 
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
 
         while(fast != null && fast.next != null){
             stack.push(slow.data);

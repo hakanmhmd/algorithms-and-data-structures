@@ -1,6 +1,7 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Two strings str1 and str2 are called isomorphic if there is a
@@ -18,27 +19,41 @@ public class IsomorphicStrings {
 
     private static boolean areIsomorphic(String s1, String s2) {
         if(s1.length() != s2.length()) return false;
-        boolean[] marked = new boolean[256];
-        int[] map = new int[256];
-        Arrays.fill(map, -1);
-        // can use HashMap
+        HashMap<Character, Character> map = new HashMap<>();
         for (int i = 0; i < s1.length(); i++) {
             char c1 = s1.charAt(i);
             char c2 = s2.charAt(i);
-            // c1 first time seen
-            if(map[c1] == -1){
-                // c2 is seen before
-                if(marked[c2]){
+            if(map.containsKey(c1)){
+                if(c2 != map.get(c1)){
                     return false;
                 }
-                marked[c2] = true;
-                map[c1] = c2;
-            } else { //c1 seen before
-                if(map[c1] != c2){
-                    return false;
-                }
+            } else {
+                map.put(c1, c2);
             }
         }
         return true;
+
+
+//        boolean[] marked = new boolean[256];
+//        int[] map = new int[256];
+//        Arrays.fill(map, -1);
+//        for (int i = 0; i < s1.length(); i++) {
+//            char c1 = s1.charAt(i);
+//            char c2 = s2.charAt(i);
+//            // c1 first time seen
+//            if(map[c1] == -1){
+//                // c2 is seen before
+//                if(marked[c2]){
+//                    return false;
+//                }
+//                marked[c2] = true;
+//                map[c1] = c2;
+//            } else { //c1 seen before
+//                if(map[c1] != c2){
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
     }
 }

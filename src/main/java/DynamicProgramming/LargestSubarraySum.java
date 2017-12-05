@@ -1,4 +1,4 @@
-package Arrays;
+package DynamicProgramming;
 
 /**
  * Largest sum of subelements in array
@@ -11,31 +11,29 @@ public class LargestSubarraySum {
     }
 
     private void largestSum(){
-//        int[] temp = new int[elements.length];
-//        int max = elements[0];
-//        temp[0] = elements[0];
-//        System.out.print(temp[0] + " ");
-//        for (int i = 1; i < elements.length; i++) {
-//            temp[i] = Math.max(elements[i], temp[i - 1] + elements[i]);
-//            max = Math.max(max, temp[i]);
-//            System.out.print(temp[i] + " ");
-//        }
-
 
         int largest = 0, largestSoFar = 0;
-        int index = 0;
+        int start = 0;
+        int end = 0;
+        int temp = 0;
         for (int i = 0; i < elements.length; i++) {
             largestSoFar += elements[i];
             if(largestSoFar < 0) {
                 largestSoFar = 0;
+                temp = i+1;
             }
             if(largestSoFar > largest) {
                 largest = largestSoFar;
-                index = i;
+                end = i;
+                start = temp;
             }
         }
 
-
+        System.out.print("Elements: ");
+        for (int i = start; i<=end; i++) {
+            System.out.print(elements[i] + " ");
+        }
+        System.out.println();
         System.out.println("Sum: " + largest);
     }
 
@@ -53,7 +51,7 @@ public class LargestSubarraySum {
     public static void main(String[] args) {
         int[] arr = new int[]{-2, -3, 4, -1, -2, 1, 5, -2};
 
-        int[] arr2 = new int[]{-2, -3, -4, -1, -2, -1, -5, -3};
+        int[] arr2 = new int[]{-2, -3, -4, -1, 2, -1, -5, -3};
         LargestSubarraySum lss = new LargestSubarraySum(arr);
         lss.largestSum();
         lss.maxSubArraySumNegative(arr2);

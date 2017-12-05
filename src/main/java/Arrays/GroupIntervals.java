@@ -1,12 +1,10 @@
 package Arrays;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Created by hakanmehmed on 12/11/2017.
+ * Given a set of interval group overlapping
  */
 public class GroupIntervals {
     static class Interval {
@@ -33,9 +31,9 @@ public class GroupIntervals {
     private static void mergeIntervals(Interval[] arr) {
         Arrays.sort(arr, new IntervalComparator());
 
-        int index = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if(index != 0 && arr[i].start < arr[index-1].end){
+        int index = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if(arr[i].start < arr[index-1].end){
                 arr[index-1].end = Math.max(arr[index-1].end, arr[i].end);
                 arr[index-1].start = Math.min(arr[index-1].start, arr[i].start);
             } else {

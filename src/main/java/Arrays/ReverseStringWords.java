@@ -1,7 +1,5 @@
 package Arrays;
 
-import java.util.Arrays;
-
 /**
  * Reverse words in a string - inplace
  */

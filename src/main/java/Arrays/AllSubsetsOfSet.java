@@ -1,7 +1,5 @@
 package Arrays;
 
-import java.util.Arrays;
-
 /**
  * O(2^n)
  */

@@ -18,7 +18,7 @@ public class LowestCommonAncestor {
         tree.insert(25);
         tree.insert(35);
 
-        TreeNode lca = findLowestCommonAncestor(tree.root, 25, 75);
+        TreeNode lca = findLowestCommonAncestor(tree.root, 25, 35);
         System.out.println(lca.key);
     }
 
