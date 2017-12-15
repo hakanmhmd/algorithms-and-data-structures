@@ -1,6 +1,11 @@
 package Graph;
 import java.util.*;
 
+/**
+ * https://www.hackerrank.com/contests/world-codesprint-12/challenges/red-knights-shortest-path
+ * BFS shortest path with backtracking
+ */
+
 public class RedKnightShortestPath {
     static class BoardPosition {
         int x;
