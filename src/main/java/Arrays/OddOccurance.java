@@ -29,7 +29,7 @@ public class OddOccurance {
     }
     
     public static void main(String[] args) {
-        int ar[] = new int[]{2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
+        int ar[] = new int[]{2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2, 5};
         OddOccurance oo = new OddOccurance(ar);
         System.out.println(oo.findOddOccurance());
     }
