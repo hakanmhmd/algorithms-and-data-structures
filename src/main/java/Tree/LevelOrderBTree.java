@@ -38,6 +38,21 @@ public class LevelOrderBTree {
         getLevelOrder(root.right, level+1, m);
     }
 
+    /*
+
+    void levelOrder(Node root) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            Node n = q.remove();
+            if(n.left != null) q.add(n.left);
+            if(n.right != null) q.add(n.right);
+            System.out.print(n.data + " ");
+        }
+    }
+     */
+
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);

@@ -72,6 +72,12 @@ public class MyLinkedList<T> {
             head = newNode;
             return head;
         }
+        if(index == 0){
+            newNode.next = current;
+            head = newNode;
+            return head;
+        }
+
         // go to the index or the end of list
         for (int i = 1; i < index && current.next != null; i++) {
             current = current.next;
