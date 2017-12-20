@@ -22,10 +22,10 @@ public class IsBST {
     {
         IsBST tree = new IsBST();
         tree.root = new Node(4);
-        tree.root.left = new Node(2);
+        tree.root.left = new Node(4);
         tree.root.right = new Node(5);
         tree.root.left.left = new Node(1);
-        tree.root.left.right = new Node(3);
+        tree.root.left.right = new Node(4);
 
         if (tree.isBST())
             System.out.println("IS BST");
@@ -50,7 +50,7 @@ public class IsBST {
             return false;
         }
 
-        return (isBSTUtil(root.left, minValue, root.data-1) && isBSTUtil(root.right, root.data+1, maxValue));
+        return (isBSTUtil(root.left, minValue, root.data) && isBSTUtil(root.right, root.data, maxValue));
     }
 
     // Using in order traversal and no additional DS

@@ -62,3 +62,58 @@ public class LowestCommonAncestor {
         return null;
     }
 }
+
+/*
+Hackerrank:
+
+static Node lca(Node root,int v1,int v2)
+{
+    Node current = root;
+    ArrayList<Node> ancestorsOne = new ArrayList<>();
+    while(true){
+        if(current != null){
+            ancestorsOne.add(current);
+            if(current.data > v1){
+                current = current.left;
+            } else if(current.data < v1){
+                current = current.right;
+            } else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+
+    current = root;
+    ArrayList<Node> ancestorsTwo = new ArrayList<>();
+    while(true){
+        if(current != null){
+            ancestorsTwo.add(current);
+            if(current.data > v2){
+                current = current.left;
+            } else if(current.data < v2){
+                current = current.right;
+            } else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+
+
+
+    Node lca = null;
+
+    int l = ancestorsOne.size() < ancestorsTwo.size() ? ancestorsOne.size() : ancestorsTwo.size();
+    for(int i=0; i<l; i++){
+        if(ancestorsOne.get(i) == ancestorsTwo.get(i)){
+            lca = ancestorsOne.get(i);
+        } else {
+            break;
+        }
+    }
+    return lca;
+}
+ */

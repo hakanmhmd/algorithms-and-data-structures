@@ -1,7 +1,5 @@
 package Graph;
 
-import com.apple.eawt.AppEvent;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
