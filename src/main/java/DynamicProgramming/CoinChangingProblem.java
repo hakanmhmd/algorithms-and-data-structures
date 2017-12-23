@@ -13,6 +13,35 @@ public class CoinChangingProblem {
 
         int minNumberOfCoins = findMinCoins2(coins, target);
         System.out.println(minNumberOfCoins);
+
+        /////////////
+
+        int[] coins2 = {2, 5, 3, 6};
+        target = 10;
+        System.out.println(findWays(coins2, target));
+    }
+
+    // Given the coin denominations how many ways are there to get a target
+    private static int findWays(int[] coins, int target){
+        int[][] m = new int[coins.length+1][target+1];
+        for(int i=0; i<target+1; i++){
+            m[0][i] = 0; // if we have no coins - 0 ways to get a specific target
+        }
+        for(int i=0; i<coins.length+1; i++){
+            m[i][0] = 1; // only one way to get 0 from any num of coins - dont choose any coins
+        }
+
+        for(int i = 1; i < coins.length+1; i++){
+            for (int j = 1; j < target+1; j++) {
+                if(j >= coins[i-1]) {
+                    m[i][j] = m[i - 1][j] + m[i][j - coins[i - 1]];
+                } else {
+                    m[i][j] = m[i - 1][j];
+                }
+            }
+        }
+
+        return m[coins.length][target];
     }
 
     private static int findMinCoins2(int[] coins, int target) {
