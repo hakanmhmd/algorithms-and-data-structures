@@ -6,7 +6,8 @@ import java.util.Comparator;
 /**
  * Given a set of interval group overlapping
  */
-public class GroupIntervals {
+public class
+GroupIntervals {
     static class Interval {
         public int start;
         public int end;
