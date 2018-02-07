@@ -49,6 +49,7 @@ public class MaxSlidingWindow {
 
         return min_sliding_max;
     }
+
     // Can also be solved using a queue
     public int[] maxSlidingWindow(int[] a, int k) {
         if (a == null || k <= 0) return null;

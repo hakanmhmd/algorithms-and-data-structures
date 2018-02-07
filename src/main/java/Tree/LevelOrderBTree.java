@@ -64,10 +64,10 @@ public class LevelOrderBTree {
         root.right.left.right = new Node(8);
         root.right.right.right = new Node(9);
         System.out.println("Level Order traversal is");
-        printVerticalOrder(root);
+        printLevelOrder(root);
     }
 
-    private static void printVerticalOrder(Node root) {
+    private static void printLevelOrder(Node root) {
         TreeMap<Integer, ArrayList<Integer>> m = new TreeMap<>();
         int rootLevel = 0;
         getLevelOrder(root, rootLevel, m);

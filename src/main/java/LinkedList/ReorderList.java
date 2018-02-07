@@ -63,7 +63,7 @@ public class ReorderList {
     }
 
     private static ListNode reverseList(ListNode head) {
-        if(head == null && head.next == null){
+        if(head == null || head.next == null){
             return head;
         }
 

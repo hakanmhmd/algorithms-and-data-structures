@@ -14,7 +14,7 @@ public class StockBuySell {
         StockBuySell stock = new StockBuySell();
 
         // stock prices on consecutive days
-        int price[] = {100, 180, 260, 310, 40, 535, 695};
+        int price[] = {180, 100, 260, 310, 40, 535, 695};
         int n = price.length;
 
         stock.stockBuySell(price, n);
@@ -52,8 +52,10 @@ public class StockBuySell {
                     + "will make profit");
         else
             for (int j = 0; j < count; j++)
-                System.out.println("Buy on day: " + buySellDays.get(j).buy
-                        +"        " + "Sell on day : " + buySellDays.get(j).sell);
+                System.out.println(
+                        "Buy on day: " + buySellDays.get(j).buy
+                        + "        Sell on day: " + buySellDays.get(j).sell
+                        + "        Profit: " + (price[buySellDays.get(j).sell] - price[buySellDays.get(j).buy]));
 
         return;
     }
