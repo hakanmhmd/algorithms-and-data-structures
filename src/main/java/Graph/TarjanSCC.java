@@ -47,7 +47,7 @@ public class TarjanSCC {
 
         if(Objects.equals(lowLinks[i], indexes[i])){
             ArrayList<Integer> component = new ArrayList<>();
-            Integer pop = null;
+            Integer pop;
             do {
                 pop = stack.pop();
                 onStack[pop] = false;
