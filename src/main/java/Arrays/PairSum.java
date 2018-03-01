@@ -13,7 +13,6 @@ import java.util.Set;
  * 2) Use helper array or hashmap and check if (sum-arr[i]) is in as you go through the array
  */
 public class PairSum {
-    private static final int MAX = 10000;
     public static void main(String[] args) {
         int[] elements = {1, 3, 9, 11, 15, -3, 6, 6};
         int sum = 12;
