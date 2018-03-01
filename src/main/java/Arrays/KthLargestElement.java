@@ -21,6 +21,7 @@ public class KthLargestElement {
     // o(nlogn)
     private static int findKthLargestSort(int[] arr, int k) {
         Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
         return arr[arr.length-k];
     }
 
@@ -76,19 +77,18 @@ public class KthLargestElement {
         PriorityQueue<Integer> heap = new PriorityQueue<>(k, new maxHeapComparator());
         for(int i: arr){
             heap.offer(i);
-        }
 
-        for (int i = 1; i < k; i++) {
-            heap.poll();
+            if(heap.size()>k){
+                heap.poll();
+            }
         }
-
         return heap.peek();
     }
 
     static class maxHeapComparator implements Comparator<Integer> {
         @Override
         public int compare (Integer x, Integer y) {
-            return y-x; //reverse order
+            return x-y; //reverse order
         }
     }
 }

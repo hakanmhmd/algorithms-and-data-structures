@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- *
+ * BFS shortest path
  */
 public class BFSShortestPath {
     private static  SimpleGraph g = new SimpleGraph(9);
@@ -20,7 +20,7 @@ public class BFSShortestPath {
             prev[i] = -1; //prev[x] = y means vertex x was visited right after vertex y
         }
         // create a queue using a linkedlist
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList<Integer> queue = new LinkedList<>();
 
         // mark start node as visited
         visited[start] = true;
@@ -46,14 +46,17 @@ public class BFSShortestPath {
 
         //printing the path - from end to start
         int currentV = end;
-        ArrayList<Integer> path = new ArrayList<Integer>();
+        ArrayList<Integer> path = new ArrayList<>();
         while(prev[currentV] != -1){
             path.add(currentV);
             currentV = prev[currentV];
         }
-        path.add(start);
-        Collections.reverse(path);
-        System.out.println(path);
+        if(path.size() == 0) System.out.println("No path");
+        else {
+            path.add(start);
+            Collections.reverse(path);
+            System.out.println(path);
+        }
     }
 
     public static void main(String[] args) {
@@ -68,6 +71,6 @@ public class BFSShortestPath {
         g.addEdge(8, 7);
         g.addEdge(7, 2);
 
-        BFSShortestPath(g, 0, 7);
+        BFSShortestPath(g, 0, 6);
     }
 }

@@ -1,5 +1,7 @@
 package Tree;
 
+import java.util.Stack;
+
 /**
  * Created by hakanmehmed on 06/11/2017.
  */
@@ -43,27 +45,76 @@ public class BinarySearchTree {
 
         preorderTraversal(tree.root);
         System.out.println();
+        preorderTraversalIter(tree.root);
+        System.out.println();
+        System.out.println();
         inorderTraversal(tree.root);
         System.out.println();
+        inorderTraversalIter(tree.root);
+        System.out.println();
+        System.out.println();
         postorderTraversal(tree.root);
+        System.out.println();
+        postorderTraversalIter(tree.root);
     }
 
     private static void postorderTraversal(TreeNode root) {
         if(root == null){
             return;
         }
-        preorderTraversal(root.left);
-        preorderTraversal(root.right);
+        postorderTraversal(root.left);
+        postorderTraversal(root.right);
         System.out.print(root.key + " ");
+    }
+
+    private static void postorderTraversalIter(TreeNode root) {
+        if(root == null){
+            return;
+        }
+
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
+        s1.push(root);
+
+        while(!s1.isEmpty()){
+            TreeNode temp = s1.pop();
+            s2.push(temp);
+
+            if(temp.left != null) s1.push(temp.left);
+            if(temp.right != null) s1.push(temp.right);
+        }
+
+        while(!s2.isEmpty()){
+            System.out.print(s2.pop().key + " ");
+        }
+
     }
 
     private static void inorderTraversal(TreeNode root) {
         if(root == null){
             return;
         }
-        preorderTraversal(root.left);
+        inorderTraversal(root.left);
         System.out.print(root.key + " ");
-        preorderTraversal(root.right);
+        inorderTraversal(root.right);
+    }
+
+    private static void inorderTraversalIter(TreeNode root){
+        if(root == null) return;
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode currentNode=root;
+
+        while(!s.isEmpty() || currentNode != null){
+            if(currentNode != null){
+                s.push(currentNode);
+                currentNode = currentNode.left;
+            } else {
+                TreeNode current = s.pop();
+                System.out.print(current.key + " ");
+                currentNode = current.right;
+            }
+        }
+
     }
 
     private static void preorderTraversal(TreeNode root) {
@@ -73,6 +124,21 @@ public class BinarySearchTree {
         System.out.print(root.key + " ");
         preorderTraversal(root.left);
         preorderTraversal(root.right);
+    }
+
+    private static void preorderTraversalIter(TreeNode root){
+        if(root == null) return;
+        Stack<TreeNode> s = new Stack<>();
+        s.push(root);
+
+        while(!s.isEmpty()){
+            TreeNode current = s.pop();
+            System.out.print(current.key + " ");
+
+            if(current.right != null) s.push(current.right);
+            if(current.left != null) s.push(current.left);
+        }
+
     }
 
 
