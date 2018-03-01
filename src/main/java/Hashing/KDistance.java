@@ -15,12 +15,33 @@ public class KDistance {
             System.out.println("Yes");
         else
             System.out.println("No");
+
+        removeDiplicatesWithinK(arr, 3);
+    }
+
+    private static void removeDiplicatesWithinK(int[] arr, int k) {
+        int[] withoutDips = new int[arr.length];
+        int index = 0;
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            if(!set.contains(arr[i])){
+                withoutDips[index++] = arr[i];
+            }
+
+            set.add(arr[i]);
+            if(i >= k){
+                set.remove(arr[i-k]);
+            }
+        }
+
+        for (int i = 0; i < index; i++) {
+            System.out.print(withoutDips[i] + " ");
+        }
     }
 
     private static boolean checkDuplicatesWithinK(int[] arr, int k) {
         HashSet<Integer> set = new HashSet<>();
         for (int i = 0; i < arr.length; i++) {
-            int el = arr[i];
             if(set.contains(arr[i])){
                 return true;
             } else {

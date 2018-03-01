@@ -9,7 +9,7 @@ public class MaxStack extends Stack<Integer> {
     Stack<Integer> s2;
 
     public MaxStack() {
-        s2 = new Stack<Integer>();
+        s2 = new Stack<>();
     }
 
     public void push(int value){

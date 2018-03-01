@@ -32,8 +32,21 @@ public class SimpleGraph {
         adjList[source].add(dest);
     }
 
+    public LinkedList<Integer>[] getNodes(){
+        return adjList;
+    }
+
+    public LinkedList<Integer> getNode(int i){
+        return adjList[i];
+    }
+
+
     public Iterator<Integer> getNeighbours(int vertex){
         return adjList[vertex].listIterator();
+    }
+
+    public Iterator<Integer> getNeighbours(LinkedList<Integer> node){
+        return node.listIterator();
     }
 
     public void print(){
