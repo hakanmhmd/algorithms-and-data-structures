@@ -49,6 +49,7 @@ public class ConvexHull {
                 start = points[i];
             }
         }
+        System.out.println("Stating with [ "  + start.x + ", " + start.y + " ]");
         Point current = start;
         Set<Point> result = new HashSet<>();
         result.add(current);

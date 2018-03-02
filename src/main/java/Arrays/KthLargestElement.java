@@ -9,13 +9,15 @@ import java.util.PriorityQueue;
  */
 public class KthLargestElement {
     public static void main(String[] args) {
-        int arr[] = {7, 10, 4, 3, 20, 15, 16, 17};
+        int arr[] = {7, 10, 4, 3, 20, 15, 16, 17, 22};
         System.out.println(Arrays.toString(arr));
         int k = 3;
         System.out.println(findKthLargestSort(arr, k));
         System.out.println(findKthLargestQuickSelect(arr, k));
         System.out.println(findKthLargestMaxHeap(arr, k));
 
+        //median using quickselect
+        System.out.println("Median " + findKthLargestQuickSelect(arr, arr.length/2+1));
     }
 
     // o(nlogn)
