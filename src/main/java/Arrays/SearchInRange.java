@@ -15,6 +15,45 @@ public class SearchInRange {
 
         int[] range = findRange(input, target);
         System.out.println(Arrays.toString(range));
+        System.out.println(Arrays.toString(searchRangeIter(input, target)));
+    }
+
+    public static int[] searchRangeIter(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        int[] res = {-1, -1};
+
+        while(left <= right){
+            if(nums[left] == nums[right] && nums[left] == target){
+                res[0] = left;
+                res[1] = right;
+                return res;
+            }
+
+            int mid = left + (right-left)/2;
+            if(nums[mid] == target){
+                res[0] = mid;
+                res[1] = mid;
+                int index = mid;
+
+                while(index > left && nums[index] == nums[index-1]){
+                    index--;
+                    res[0] = index;
+                }
+                index = mid;
+                while(index < right && nums[index] == nums[index+1]){
+                    index++;
+                    res[1] = index;
+                }
+                return res;
+            } else if(nums[mid] > target){
+                right = mid-1;
+            } else {
+                left = mid+1;
+            }
+        }
+
+        return res;
     }
 
     private static int[] findRange(int[] input, int target) {

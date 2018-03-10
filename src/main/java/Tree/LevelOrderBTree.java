@@ -40,16 +40,30 @@ public class LevelOrderBTree {
 
     /*
 
-    void levelOrder(Node root) {
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        if(root == null) return result;
 
-        while(!q.isEmpty()){
-            Node n = q.remove();
-            if(n.left != null) q.add(n.left);
-            if(n.right != null) q.add(n.right);
-            System.out.print(n.data + " ");
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> nextLevel = new LinkedList<TreeNode>();
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            TreeNode t = queue.remove();
+
+            if(t.left != null) nextLevel.add(t.left);
+            if(t.right != null) nextLevel.add(t.right);
+            temp.add(t.val);
+            if(queue.isEmpty()){
+                queue = nextLevel;
+                nextLevel = new LinkedList<TreeNode>();
+                result.add(temp);
+                temp = new ArrayList<>();
+            }
         }
+
+        return result;
     }
      */
 

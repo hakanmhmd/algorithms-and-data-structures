@@ -55,6 +55,21 @@ public class PathsWithSum {
         }
     }
 
+    public static boolean hasPathSum2(Node root, int sum) {
+        if(root == null) return false;
+
+        return hasPathSumUtil(root, 0, sum);
+    }
+
+    private static boolean hasPathSumUtil(Node node, int currentSum, int sum){
+        if(node != null){
+            currentSum += node.data;
+            if(currentSum == sum && node.left == null && node.right == null) return true;
+            return hasPathSumUtil(node.left, currentSum, sum) || hasPathSumUtil(node.right, currentSum, sum);
+        }
+        return false;
+    }
+
 
     public static void main(String args[])
     {
@@ -82,6 +97,8 @@ public class PathsWithSum {
             }
             System.out.println();
         }
+
+        System.out.println(hasPathSum2(tree.root, sum));
 
     }
 }

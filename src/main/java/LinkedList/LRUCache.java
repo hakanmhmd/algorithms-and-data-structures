@@ -11,18 +11,18 @@ import java.util.Map;
  */
 public class LRUCache<T> {
     private class Node<T> {
-        private Integer key;
+        //private Integer key;
         private T value;
         private Node<T> next;
         private Node<T> prev;
-        public Node(Integer key, T value){ //constructor
-            this.key = key;
+        public Node(T value){ //constructor
+            //this.key = key;
             this.value = value;
         }
     }
 
     int capacity;
-    HashMap<Integer, Node<T>> map = new HashMap<>();
+    HashMap<T, Node<T>> map = new HashMap<>();
     Node<T> head = null;
     Node<T> tail = null;
 
@@ -30,7 +30,7 @@ public class LRUCache<T> {
         this.capacity = capacity;
     }
 
-    public T get(Integer key){
+    public T get(T key){
         if(map.containsKey(key)){
             Node<T> n = map.get(key);
             remove(n);
@@ -41,17 +41,17 @@ public class LRUCache<T> {
         return null;
     }
 
-    public void set(Integer key, T value){
+    public void set(T key, T value){
         if(map.containsKey(key)){
             Node<T> old = map.get(key);
             old.value = value;
             remove(old);
             setHead(old);
         } else {
-            Node<T> newNode = new Node<T>(key, value);
+            Node<T> newNode = new Node<T>(value);
             if(map.size() >= capacity){
                 // remove least recently used
-                map.remove(tail.key);
+                map.remove(tail.value);
                 remove(tail);
             }
 
@@ -93,25 +93,51 @@ public class LRUCache<T> {
         }
     }
 
+    private void visit(T v){
+        T t = get(v);
+        if(t == null){
+            set(v, v);
+        }
+    }
+
+    private T getLastVisit(){
+        return head.value;
+    }
+
     public static void main(String[] args) {
-        LRUCache<String> cache = new LRUCache<String>(3);
+        LRUCache<String> history = new LRUCache<>(3);
 
-        cache.set(1, "bbc.co.uk");
-        cache.set(2, "cnn.com");
-        cache.set(3, "bloomberg.com");
-        cache.set(4, "google.com");
-        cache.print();
+        history.visit("bbc.co.uk");
+        history.print();
+        history.visit("cnn.com");
+        history.print();
+        history.visit("bloomberg.com");
+        history.print();
+        history.visit("google.com");
+        history.print();
+        history.visit("cnn.com");
+        history.print();
+        history.visit("google.com");
+        history.print();
+        System.out.println(history.getLastVisit());
 
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(2));
-        cache.set(1, "lala.com");
-
-        cache.print();
+//        history.set("bbc.co.uk", "bbc.co.uk");
+//        history.set("cnn.com", "cnn.com");
+//        history.set("bloomberg.com", "bloomberg.com");
+//        history.set("google.com", "google.com");
+//        history.print();
+//
+//        System.out.println(history.get("bbc.co.uk"));
+//        System.out.println(history.get("cnn.com"));
+//        history.print();
+//        history.set("lala.com", "lala.com");
+//
+//        history.print();
 
     }
 
     private void printMap() {
-        for(Map.Entry<Integer, Node<T>> entry: map.entrySet()){
+        for(Map.Entry<T, Node<T>> entry: map.entrySet()){
             System.out.println(entry.getKey() + " " + entry.getValue().value);
         }
     }

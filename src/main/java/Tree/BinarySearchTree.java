@@ -32,6 +32,13 @@ public class BinarySearchTree {
     }
 
 
+    /*
+            5
+         1      7
+           4      8
+                    20
+                   15
+     */
 
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
@@ -56,6 +63,8 @@ public class BinarySearchTree {
         postorderTraversal(tree.root);
         System.out.println();
         postorderTraversalIter(tree.root);
+        System.out.println();
+        postorderTraversalIterOneStack(tree.root);
     }
 
     private static void postorderTraversal(TreeNode root) {
@@ -87,6 +96,38 @@ public class BinarySearchTree {
         while(!s2.isEmpty()){
             System.out.print(s2.pop().key + " ");
         }
+
+    }
+
+    private static void postorderTraversalIterOneStack(TreeNode root) {
+        if(root == null){
+            return;
+        }
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode currentNode = root;
+        s.push(root);
+
+        while(!s.isEmpty() || currentNode != null){
+            if(currentNode != null) {
+                s.push(currentNode);
+                currentNode = currentNode.left;
+            } else {
+                TreeNode temp = s.peek().right;
+                if(temp == null) { // if it has right child
+                    temp = s.pop();
+                    System.out.print(temp.key + " ");
+                    while(!s.isEmpty() && temp == s.peek().right){
+                        temp = s.pop();
+                        System.out.print(temp.key + " ");
+                    }
+                } else {
+                    currentNode = temp;
+                }
+
+            }
+        }
+
+
 
     }
 
