@@ -7,6 +7,9 @@ import java.util.Arrays;
  * Your algorithm's runtime complexity must be in the order of O(log n).
  * If the target is not found in the array, return [-1, -1]. For example, given [5, 7, 7, 8, 8, 10]
  * and target value 8, return [3, 4].
+ *
+ * Find the element we look for using Bsearch and then look at the left and right of it
+ * if it repeats
  */
 public class SearchInRange {
     public static void main(String[] args) {
@@ -24,11 +27,11 @@ public class SearchInRange {
         int[] res = {-1, -1};
 
         while(left <= right){
-            if(nums[left] == nums[right] && nums[left] == target){
-                res[0] = left;
-                res[1] = right;
-                return res;
-            }
+//            if(nums[left] == nums[right] && nums[left] == target){
+//                res[0] = left;
+//                res[1] = right;
+//                return res;
+//            }
 
             int mid = left + (right-left)/2;
             if(nums[mid] == target){

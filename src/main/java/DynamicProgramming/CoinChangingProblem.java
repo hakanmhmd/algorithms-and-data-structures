@@ -53,6 +53,7 @@ public class CoinChangingProblem {
     }
 
     private static int findMinCoins2(int[] coins, int target) {
+        if(target == 0) return 0;
         int[] T = new int[target+1];
         int[] R = new int[target+1];
 
@@ -61,6 +62,7 @@ public class CoinChangingProblem {
             T[i] = Integer.MAX_VALUE-1;
             R[i] = -1;
         }
+        // target 0 - min coins to make it is 0
         T[0] = 0;
 
 
@@ -76,6 +78,7 @@ public class CoinChangingProblem {
             }
         }
 
+        // if the coin the introduced it is -1
         if(R[R.length-1] == -1){
             System.out.println("No solution");
             return -1;
@@ -92,10 +95,13 @@ public class CoinChangingProblem {
     }
 
     private static int findMinCoins(int[] coins, int target) {
+        if(target == 0) return 0;
         int[][] matrix = new int[coins.length+1][target+1];
+        // if there are no coins, we cant find min coins
         for (int i = 0; i < target+1; i++) {
             matrix[0][i] = Integer.MAX_VALUE;
         }
+        // if target is 0 we can do it by choosing 0 coins
         for (int i = 0; i < coins.length+1; i++) {
             matrix[i][0] = 0;
         }
@@ -114,6 +120,7 @@ public class CoinChangingProblem {
             System.out.println(Arrays.toString(matrix[i]));
         }
 
+        if(matrix[coins.length][target] == Integer.MAX_VALUE) return -1;
         return matrix[coins.length][target];
     }
 

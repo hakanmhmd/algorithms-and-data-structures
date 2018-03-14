@@ -1,7 +1,6 @@
 package Arrays;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -14,10 +13,18 @@ public class KthLargestElement {
         int k = 3;
         System.out.println(findKthLargestSort(arr, k));
         System.out.println(findKthLargestQuickSelect(arr, k));
-        System.out.println(findKthLargestMaxHeap(arr, k));
+        System.out.println(findKthLargestHeap(arr, k));
 
         //median using quickselect
-        System.out.println("Median " + findKthLargestQuickSelect(arr, arr.length/2+1));
+
+        arr = new int[]{7, 10, 4, 3, 20, 15, 16, 17, 22, 23};
+        System.out.println(Arrays.toString(arr));
+        if(arr.length % 2 != 0) {
+            System.out.println("Median " + findKthLargestQuickSelect(arr, arr.length / 2 + 1));
+        } else {
+            System.out.println("Median " + (findKthLargestQuickSelect(arr, arr.length / 2 + 1) +
+                                findKthLargestQuickSelect(arr, arr.length / 2)) / 2.0);
+        }
     }
 
     // o(nlogn)
@@ -49,7 +56,7 @@ public class KthLargestElement {
                 left++;
             }
 
-            while(arr[right] >= pivot && right > left){
+            while(arr[right] >= pivot && left < right){
                 right--;
             }
 
@@ -75,8 +82,8 @@ public class KthLargestElement {
     }
 
     // o(nlogk) time, o(k) space
-    private static int findKthLargestMaxHeap(int[] arr, int k){
-        PriorityQueue<Integer> heap = new PriorityQueue<>(k, new maxHeapComparator());
+    private static int findKthLargestHeap(int[] arr, int k){
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
         for(int i: arr){
             heap.offer(i);
 
@@ -87,10 +94,11 @@ public class KthLargestElement {
         return heap.peek();
     }
 
-    static class maxHeapComparator implements Comparator<Integer> {
-        @Override
-        public int compare (Integer x, Integer y) {
-            return x-y; //reverse order
-        }
-    }
+
+//    static class maxHeapComparator implements Comparator<Integer> {
+//        @Override
+//        public int compare (Integer x, Integer y) {
+//            return x-y; //reverse order
+//        }
+//    }
 }

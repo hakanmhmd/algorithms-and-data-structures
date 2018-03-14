@@ -78,6 +78,21 @@ public class LowestCommonAncestor {
 
         return left == null ? right : left;
     }
+
+    // if we have BST - the algorithm can be simplified
+    public static TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) return null;
+
+        if(root.key > p.key && root.key > q.key){
+            // go left
+            return lowestCommonAncestorBST(root.left, p ,q);
+        } else if(root.key < p.key && root.key < q.key){
+            //go right
+            return lowestCommonAncestorBST(root.right, p ,q);
+        } else {
+            return root;
+        }
+    }
 }
 
 /*

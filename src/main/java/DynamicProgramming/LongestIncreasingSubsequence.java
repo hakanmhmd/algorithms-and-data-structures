@@ -67,20 +67,25 @@ public class LongestIncreasingSubsequence {
 
     // O(n^2) solution
     private static int findLIS(int[] arr) {
+        if(arr == null || arr.length == 0) return 0;
+        if(arr.length == 1) return 1;
+
         int[] helper = new int[arr.length];
+
+        // each element has lis of 1
         Arrays.fill(helper, 1);
 
         for (int i = 1; i < helper.length; i++) {
             for (int j = 0; j < i; j++) {
                 if(arr[i] > arr[j]){
-                    helper[i] = helper[j] + 1;
+                    helper[i] = Math.max(helper[i], helper[j]+1);
                 }
             }
         }
 
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < helper.length; i++) {
-             max = Math.max(max, helper[i]);
+            max = Math.max(max, helper[i]);
         }
         return max;
 

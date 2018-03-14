@@ -1,6 +1,10 @@
 package Arrays;
 
+import java.util.List;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -22,6 +26,7 @@ public class GroupIntervals {
                 new Interval(1,3),
                 new Interval(2,4),
                 new Interval(0,3),
+                new Interval(5,7),
                 new Interval(5,7)
         };
         mergeIntervals(arr);
@@ -30,6 +35,7 @@ public class GroupIntervals {
 
     private static void mergeIntervals(Interval[] arr) {
         Arrays.sort(arr, new IntervalComparator());
+
 
         int index = 1;
         for (int i = 1; i < arr.length; i++) {
@@ -45,6 +51,36 @@ public class GroupIntervals {
         for (int i = 0; i < index; i++) {
             System.out.println("[ " + arr[i].start + " " + arr[i].end + " ]");
         }
+    }
+
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> res = new ArrayList<Interval>();
+        if(intervals.size() == 0 ) return res;
+
+        Collections.sort(intervals, new Comparator<Interval>() {
+            public int compare(Interval obj1, Interval obj2) {
+                return obj1.start - obj2.start;
+            }
+        });
+
+        Interval pre = intervals.get(0);
+        res.add(pre);
+
+        int index = 0;
+        for(int i=1; i<intervals.size(); i++){
+            Interval curr = intervals.get(i);
+            if(curr.start <= res.get(index).end){
+                Interval merged = new Interval(Math.min(res.get(index).start, curr.start),
+                        Math.max(res.get(index).end, curr.end));
+                res.remove(index);
+                res.add(merged);
+            } else {
+                res.add(curr);
+                index++;
+            }
+        }
+
+        return res;
     }
 
     private static class IntervalComparator implements Comparator<Interval> {

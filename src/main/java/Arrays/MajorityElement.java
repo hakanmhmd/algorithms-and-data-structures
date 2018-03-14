@@ -32,24 +32,23 @@ public class MajorityElement {
 
     }
 
-    // O(n) runtime, O(1) space
+    // O(n) runtime, O(1) space Moore's voting algorithm
     private static int findMajorityElementCandidate(int[] arr) {
-        int size = arr.length;
-        int index = 0, count = 1;
-        for (int i = 1; i < size; i++) {
-            if(arr[index] == arr[i]){
+        int maj_index = 0, count = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if(arr[maj_index] == arr[i]){
                 count++;
             } else {
                 count--;
             }
             if(count == 0){
                 // change the index to the current element's index
-                index = i;
+                maj_index = i;
                 // reset the count
                 count = 1;
             }
         }
-        return arr[index];
+        return arr[maj_index];
     }
 
     // O(n) time, O(n+k) space where k is the biggest element

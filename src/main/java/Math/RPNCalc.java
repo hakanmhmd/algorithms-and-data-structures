@@ -22,13 +22,26 @@ public class RPNCalc {
                 stack.push(next);
             } catch (Exception e){
                 if(Objects.equals(s, "+")){
+                    //check if there are two elements
                     stack.push(stack.pop() + stack.pop());
                 } else if(Objects.equals(s, "-")){
-                    stack.push(stack.pop() - stack.pop());
+                    //check if there are two elements
+                    int first = stack.pop();
+                    int second = stack.pop();
+                    stack.push(first - second);// order matters here
+
                 } else if(Objects.equals(s, "*") || Objects.equals(s, "x")){
+                    //check if there are two elements
                     stack.push(stack.pop() * stack.pop());
                 } else if(Objects.equals(s, "/")){
-                    stack.push(stack.pop() / stack.pop());
+                    //check if there are two elements
+                    int denom = stack.pop();
+                    int nom = stack.pop();
+                    if(denom == 0) {
+                        stack.push(0); // throw an Exception
+                    } else {
+                        stack.push(nom / denom);
+                    }
                 } else if(Objects.equals(s, "=")){
                     System.out.println(stack.pop());
                 }
