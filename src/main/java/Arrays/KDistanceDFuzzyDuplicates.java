@@ -1,6 +1,5 @@
 package Arrays;
 
-import java.util.Objects;
 import java.util.TreeSet;
 
 /**
@@ -28,7 +27,7 @@ public class KDistanceDFuzzyDuplicates {
         for(int i=0; i<nums.length; i++) {
             Integer floor = values.floor(nums[i] + d); // return the greatest element in this set less than or equal to the given element
             Integer ceiling = values.ceiling(nums[i] - d); // return the least element in this set greater than or equal to the given element
-            System.out.println(floor + " " + ceiling);
+            //System.out.println(floor + " " + ceiling);
 
             if ((floor != null && floor >= nums[i])
                     || (ceiling != null && ceiling <= nums[i])) {
