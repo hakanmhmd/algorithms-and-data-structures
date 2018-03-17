@@ -7,31 +7,46 @@ import java.util.Arrays;
  */
 public class ProductsOfNumbers {
 
+    // without division
     public static void main(String[] args) {
         int[] a  = new int[]{1,2,3,4};
-        int[] products_below = new int[a.length];
+        int[] products_left = new int[a.length];
         int p=1;
         for(int i=0;i<a.length;++i) {
-            products_below[i]=p;
+            products_left[i]=p;
             p*=a[i];
         }
 
-        System.out.println(Arrays.toString(products_below));
+        System.out.println(Arrays.toString(products_left));
 
-        int[] products_above = new int[a.length];
+        int[] products_right = new int[a.length];
         p=1;
         for(int i=a.length-1;i>=0;--i) {
-            products_above[i]=p;
+            products_right[i]=p;
             p*=a[i];
         }
 
-        System.out.println(Arrays.toString(products_above));
+        System.out.println(Arrays.toString(products_right));
 
-        int[] products = new int[a.length]; // This is the result
+        int[] products = new int[a.length];
         for(int i=0;i<a.length; ++i) {
-            products[i]=products_below[i]*products_above[i];
+            products[i]=products_left[i]*products_right[i]; // product left of i * product right of i
         }
 
         System.out.println(Arrays.toString(products));
+    }
+
+    // constant space
+    public int[] productExceptSelf(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0, tmp = 1; i < nums.length; i++) {
+            result[i] = tmp;
+            tmp *= nums[i];
+        }
+        for (int i = nums.length - 1, tmp = 1; i >= 0; i--) {
+            result[i] *= tmp;
+            tmp *= nums[i];
+        }
+        return result;
     }
 }
