@@ -34,6 +34,19 @@ public class MajorityElement {
 
     // O(n) runtime, O(1) space Moore's voting algorithm
     private static int findMajorityElementCandidate(int[] arr) {
+        /**
+         *   int candidate = arr[0], count = 1;
+             for (int i = 1; i < arr.length; i++) {
+             if(count == 0){
+             candidate = arr[i];
+             count = 1;
+             } else {
+             if(candidate == arr[i]) count++;
+             else count--;
+             }
+             }
+             return candidate;
+         */
         int maj_index = 0, count = 1;
         for (int i = 1; i < arr.length; i++) {
             if(arr[maj_index] == arr[i]){

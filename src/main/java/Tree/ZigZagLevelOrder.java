@@ -36,6 +36,7 @@ public class ZigZagLevelOrder {
         lists.forEach(System.out::println);
     }
 
+    // can be achieved using two stacks - even stack and odd stack for the levels
     private static List<List<Integer>> printZigZagOrder(Node root) {
 
         List<List<Integer>> result = new ArrayList<>();

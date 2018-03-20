@@ -78,6 +78,18 @@ public class ReorderList {
 
         head.next = null;
         return pre;
+
+        /**
+         * prev = null;
+         * curr = null;
+         * nxt = head;
+         * while(nxt!=null){
+         *   curr = nxt;
+         *   nxt = nxt.next;
+         *   curr.next = prev;
+         *   prev = curr;
+         * }
+         */
     }
 
     private static void printList(ListNode n) {

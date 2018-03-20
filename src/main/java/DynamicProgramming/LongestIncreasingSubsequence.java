@@ -12,7 +12,49 @@ public class LongestIncreasingSubsequence {
         int m = findLIS(arr);
         int n = findLIS2(input);
         System.out.println(n);
+
+        System.out.println(findLIS3(arr));
     }
+
+
+    // same as findLIS2 but with the actual subsequence
+    private static int findLIS3(int[] arr){
+        int[] parent = new int[arr.length];
+        int[] subseq = new int[arr.length+1];
+        int len = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            // find a place for arr[i] in subseq array
+            int low = 1;
+            int high = len;
+            while(low <= high){
+                int mid = (int) Math.ceil((low+high) / 2);
+                if(arr[i] > arr[subseq[mid]]){
+                    low = mid + 1;
+                } else {
+                    high = mid-1;
+                }
+            }
+
+            int pos = low;
+            parent[i] = subseq[pos-1];
+            subseq[pos] = i;
+
+            if(pos > len) len = pos;
+
+        }
+
+        int[] lis = new int[len];
+        int k = subseq[len];
+        for(int j=len-1; j>=0; j--){
+            lis[j] = arr[k];
+            k = parent[k];
+        }
+
+        System.out.println(Arrays.toString(lis));
+        return len;
+    }
+
 
     // O(nlogn)
     private static int findLIS2(int[] arr) {
@@ -70,22 +112,23 @@ public class LongestIncreasingSubsequence {
         if(arr == null || arr.length == 0) return 0;
         if(arr.length == 1) return 1;
 
-        int[] helper = new int[arr.length];
+        int[] lis = new int[arr.length];
 
         // each element has lis of 1
-        Arrays.fill(helper, 1);
+        Arrays.fill(lis, 1);
 
-        for (int i = 1; i < helper.length; i++) {
+        // for each i calc the length of increasing subs ending at i
+        for (int i = 1; i < lis.length; i++) {
             for (int j = 0; j < i; j++) {
-                if(arr[i] > arr[j]){
-                    helper[i] = Math.max(helper[i], helper[j]+1);
+                if(arr[i] > arr[j]){ // we have an increasing subsequence
+                    lis[i] = Math.max(lis[i], lis[j]+1);
                 }
             }
         }
 
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < helper.length; i++) {
-            max = Math.max(max, helper[i]);
+        for (int i = 0; i < lis.length; i++) {
+            max = Math.max(max, lis[i]);
         }
         return max;
 

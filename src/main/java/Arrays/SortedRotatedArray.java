@@ -1,7 +1,8 @@
 package Arrays;
 
 /**
- * Suppose a sorted array is rotated at some pivot unknown to you beforehand. (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+ * Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+ * (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
  * You are given a target value to search. If found in the array return its index, otherwise return -1.
  * You may assume no duplicate exists in the array.
  */
@@ -46,14 +47,14 @@ public class SortedRotatedArray {
 
         while(left <= right){
             int mid = left + (right-left)/2;
-            if(nums[mid] > nums[mid+1]) return mid+1;
-            else if(nums[left] <= nums[mid]){
+            if(mid < nums.length-1 && nums[mid] > nums[mid+1]) return mid+1;
+            else if(nums[left] <= nums[mid]){ // start to mid is sorted
                 left = mid+1;
             } else {
                 right = mid-1;
             }
         }
-        return -1;
+        return nums[0]; // its not rotated
     }
 
     // binary search
@@ -72,13 +73,13 @@ public class SortedRotatedArray {
         }
 
         if(nums[mid] >= nums[start]){ // start to mid is sorted
-            if(nums[start]<=target && target<nums[mid]){ // is target between start and mid
+            if(nums[start] <= target && target < nums[mid]){ // is target between start and mid
                 return binarySearch(nums, start, mid-1, target);
             } else {
                 return binarySearch(nums, mid+1, end, target);
             }
-        } else { // start to mid is not sorted
-            if(nums[end]>=target && target>nums[mid]){ // is target between min and end
+        } else { // mid to end it sorted
+            if(nums[mid] < target && target <= nums[end]){ // is target between min and end
                 return binarySearch(nums, mid+1, end, target);
             } else {
                 return binarySearch(nums, start, mid-1, target);

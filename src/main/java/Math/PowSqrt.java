@@ -18,7 +18,6 @@ public class PowSqrt {
             if(mid * mid == x) return (int)mid;
             else if(mid * mid > x) {
                 right = mid - 1;
-
             } else {
                 left = mid + 1;
                 ans = mid;

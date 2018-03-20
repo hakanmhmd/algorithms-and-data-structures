@@ -15,9 +15,26 @@ public class Knapsack {
     {
         int val[] = new int[]{60, 100, 120};
         int wt[] = new int[]{10, 20, 30};
-        int  W = 50;
+        int W = 50;
         int n = val.length;
         System.out.println(knapSack(W, wt, val, n));
+        System.out.println(knapSackRec(W, wt, val, 0));
+    }
+
+    private static int knapSackRec(int W, int[] wt, int[] val, int n){
+        if(n == wt.length || W == 0){
+            return 0;
+        }
+        if(wt[n] > W) {
+            // cant include it
+            return knapSackRec(W, wt, val, n+1);
+        }
+        // try including and excluding the n item
+
+        int included = val[n] + knapSackRec(W-wt[n], wt, val, n+1);
+        int excluded = knapSackRec(W, wt, val, n+1);
+
+        return Math.max(included, excluded);
     }
 
     private static int knapSack(int W, int[] wt, int[] val, int n) {

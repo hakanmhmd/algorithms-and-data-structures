@@ -18,6 +18,8 @@ public class StockBuySell {
         int n = price.length;
 
         stock.stockBuySell(price, n);
+
+        System.out.println(maxProfitOneTrans(price));
     }
 
     private void stockBuySell(int[] price, int n) {
@@ -58,6 +60,20 @@ public class StockBuySell {
                         + "        Profit: " + (price[buySellDays.get(j).sell] - price[buySellDays.get(j).buy]));
 
         return;
+    }
+
+
+    // if we have only one trascation to do
+    private static int maxProfitOneTrans(int[] prices){
+        int profit = 0;
+        int minSoFar = Integer.MAX_VALUE;
+
+        for(int i=0; i<prices.length; i++){
+            if(prices[i] < minSoFar) minSoFar = prices[i];
+            profit = Math.max(profit, prices[i] - minSoFar);
+        }
+
+        return profit;
     }
 
     private class BuySell {

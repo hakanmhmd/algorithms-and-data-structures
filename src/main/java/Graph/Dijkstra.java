@@ -44,8 +44,13 @@ public class Dijkstra {
             Iterator<Integer> neighbours = g.getNeighbours(n);
             while(neighbours.hasNext()){
                 Integer next = neighbours.next();
-                parent[next] = n;
-                if(dist[next] >= dist[n] + 1) dist[next] = dist[n]+1; //weight
+                if(!visited[next]) {
+
+                    if (dist[next] >= dist[n] + 1){
+                        dist[next] = dist[n] + 1; //weight
+                        parent[next] = n;
+                    }
+                }
             }
         }
 

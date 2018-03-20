@@ -17,6 +17,13 @@ public class MedianOfTwoArrays {
                 getMedian(arr1, arr2, n1, n2));
 
         System.out.println(getMedianBSearch(arr1, arr2));
+
+
+        //////////////////////////
+        int[] x = {1,2,5,11,15};
+        int[] y = {3,4,13,17,18};
+
+        System.out.println(getMedianSameLength(x, y, 0, x.length-1, 0, y.length-1));
     }
 
     // O(log n)
@@ -139,5 +146,30 @@ public class MedianOfTwoArrays {
         } else {
             return findKth(k - k / 2, arr1, arr2, s1, m2 + 1);
         }
+    }
+
+
+    // if the sizes of the two arrays is same
+    private static double getMedianSameLength(int[] x, int[] y, int startX, int endX, int startY, int endY){
+        if(endX - startX == 1 && endY - startY == 1){
+            return (1.0 * (Math.max(x[startX], y[startY]) + Math.min(x[endX], y[endY]))) / 2;
+        }
+
+        int mx = (startX + endX) / 2;
+        int my = (startY + endY) / 2;
+
+        if(x[mx] == y[my]){
+            return x[mx];
+        }
+
+        if(x[mx] < y[my]){ // eliminate elems less than x[mx] and greater than y[my]
+            startX = mx;
+            endY = my;
+        } else { // eliminate elems greater than x[mx] and less than y[my]
+            startY = my;
+            endX = mx;
+        }
+
+        return getMedianSameLength(x, y, startX, endX, startY, endY);
     }
 }

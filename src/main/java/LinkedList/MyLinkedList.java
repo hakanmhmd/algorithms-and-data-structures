@@ -253,6 +253,16 @@ public class MyLinkedList<T> {
         reverseRecursion(newNext, current);
 
         return head;
+
+        //////////
+
+        /**
+         * if(curr == null) return;
+         * if(curr.next == null) head = curr; return;
+         * recurse(curr.next)
+         * curr.next.next = curr;
+         * curr.next = null
+         */
     }
 
     public void printList(){

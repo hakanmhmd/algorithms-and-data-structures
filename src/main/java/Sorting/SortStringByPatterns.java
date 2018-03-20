@@ -7,26 +7,32 @@ package Sorting;
  */
 public class SortStringByPatterns {
     public static void main(String[] args) {
-        String pattern = "wcyuogmlrdfphitxjakqvzbnes";
-        String text = "jcdokai";
+        String pattern = "cyuogmlrdfphitxjakqvzbnes";
+        String text = "wjcdokai";
         String s = sortByPattern(text, pattern);
         System.out.println(s);
     }
 
     private static String sortByPattern(String text, String pattern) {
-        int[] letterCount = new int[26];
-        for (int i = 0; i < text.length(); i++) {
-            letterCount[text.charAt(i)-'a']++;
+
+        int[] count = new int[26];
+        char[] tArr = text.toCharArray();
+        char[] pArr = pattern.toCharArray();
+        for(char c: tArr){
+            count[c - 'a']++;
         }
 
-        StringBuilder sorted = new StringBuilder();
-        for (int i = 0; i < pattern.length(); i++) {
-            int count = letterCount[pattern.charAt(i)-'a'];
-            for (int j = 0; j < count; j++) {
-                sorted.append(pattern.charAt(i));
+        StringBuilder sb = new StringBuilder();
+        for(char c: pArr){
+            while(count[c-'a']-- > 0){
+                sb.append(c);
             }
         }
 
-        return sorted.toString();
+        for (char c = 'a'; c <= 'z'; ++c) {
+            while (count[c - 'a']-- > 0) { sb.append(c); }
+        }
+
+        return sb.toString();
     }
 }

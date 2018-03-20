@@ -25,17 +25,9 @@ public class NextGreaterElement {
 
         for (int i = 1; i < arr.length; i++) {
             int current = arr[i];
-            if(!stack.isEmpty()){
-                Pair<Integer, Integer> top = stack.peek();
-                while(current > top.fst){
-                    arr[top.snd] = current;
-                    stack.pop();
-                    if(stack.isEmpty()){
-                        break;
-                    }
-
-                    top = stack.peek();
-                }
+            while(!stack.isEmpty() && stack.peek().fst < current){
+                Pair<Integer, Integer> top = stack.pop();
+                arr[top.snd] = current;
             }
             stack.push(new Pair<>(current, i));
         }
