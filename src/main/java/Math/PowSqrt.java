@@ -6,6 +6,7 @@ package Math;
 public class PowSqrt {
     public static void main(String[] args) {
         System.out.println("Pow 2,10: " + myPow(2, 10));
+        System.out.println("Pow 2,10: " + myPow2(2, 10));
         System.out.println("Sqrt 18: " + mySqrt(18));
     }
 
@@ -48,6 +49,20 @@ public class PowSqrt {
                 return (temp*temp)/x;
             }
         }
+    }
 
+    public static double myPow2(double x, int n){
+        double res = 1.0;
+        for(int i=n; i!=0; i/=2){
+            System.out.print(i);
+            if(i%2 != 0){
+                res = res * x;
+            }
+            x = x * x;
+            System.out.print(" " + res);
+            System.out.println(" " + x);
+        }
+
+        return n<0 ? 1.0 / res : res;
     }
 }

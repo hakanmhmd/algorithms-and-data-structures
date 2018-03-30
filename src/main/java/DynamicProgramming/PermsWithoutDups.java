@@ -3,7 +3,7 @@ package DynamicProgramming;
 import java.util.ArrayList;
 
 /**
- * Write a method to compute all permutations of a string of unique chara c t ers .
+ * Write a method to compute all permutations of a string of unique characters .
  *
  * P(a1) = [a1]
  * P(a2) = P(a1) + a2 inserted into all possible locations = [a1a2, a2a1]

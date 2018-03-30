@@ -12,6 +12,8 @@ public class ThreeSum {
         int target = 0;
         ArrayList<ArrayList<Integer>> solutions = threeSum(s, target);
         System.out.println(solutions);
+
+        System.out.println(threeSumClosest(s, 8));
     }
 
     private static ArrayList<ArrayList<Integer>> threeSum(int[] input, int target) {
@@ -39,12 +41,42 @@ public class ThreeSum {
                             l++;
                         while (l < r && input[r] == input[r + 1])
                             r--;
-                    } else if (sum < target)
+                    } else if (sum < target) {
                         l++;
-                    else // A[i] + A[l] + A[r] > sum
+                    } else { // A[i] + A[l] + A[r] > target
                         r--;
+                    }
                 }
             }
+        }
+
+        return result;
+    }
+
+    private static int threeSumClosest(int[] nums, int target){
+        int min = Integer.MAX_VALUE;
+        int result = 0;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length-2; i++) {
+            int l = i+1;
+            int r = nums.length-1;
+            while(l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
+                int diff = Math.abs(sum - target);
+
+                if (diff == 0) return sum;
+
+                if (diff < min) {
+                    min = diff;
+                    result = sum;
+                }
+                if (sum < target) {
+                    l++;
+                } else {
+                    r--;
+                }
+            }
+
         }
 
         return result;

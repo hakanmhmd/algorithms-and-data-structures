@@ -1,5 +1,7 @@
 package Tree;
 
+import java.util.Stack;
+
 /**
  * Given a binary tree determine if it is a BST
  */
@@ -67,5 +69,29 @@ public class IsBST {
             return isBST(node.right);
         }
         return true;
+    }
+
+        public boolean isValidBST(Node root){
+        if (root == null){
+            return true;
+        }
+        Stack<Node> stack = new Stack<Node>();
+        Node pre = null;
+        Node cur = root;
+        while (!stack.isEmpty() || cur != null){
+            if (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                Node p = stack.pop();
+                if (pre != null && p.data <= pre.data){
+                    return false;
+                }
+                pre = p;
+                cur = p.right;
+            }
+        }
+        return true;
+
     }
 }

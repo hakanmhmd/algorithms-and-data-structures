@@ -5,7 +5,7 @@ package Arrays;
  */
 public class ReverseStringWords {
     public static void main(String[] args) {
-        String s = "The man is playing football";
+        String s = "The   man is playing football";
         System.out.println(s);
         reverseWords(s.toCharArray());
     }
@@ -32,4 +32,32 @@ public class ReverseStringWords {
             i--;
         }
     }
+
+//    public String reverseWords(String s) {
+//        if(s == null || s.trim().length() <= 1){
+//            return s.trim();
+//        }
+//        char[] strs = s.trim().toCharArray();
+//        reverse(strs, 0, strs.length - 1);
+//
+//        StringBuilder sb = new StringBuilder();
+//        int i = 0;
+//        while (i < strs.length){
+//            while (i < strs.length && strs[i] == ' '){
+//                i++;
+//            }
+//            if (i >= strs.length){
+//                break;
+//            }
+//            int j = i;
+//            while (j < strs.length && strs[j] != ' '){
+//                j++;
+//            }
+//
+//            reverse(strs, i, j - 1);
+//            sb.append(strs, i, j - i).append(" ");
+//            i = j + 1;
+//        }
+//        return sb.deleteCharAt(sb.length() - 1).toString();
+//    }
 }

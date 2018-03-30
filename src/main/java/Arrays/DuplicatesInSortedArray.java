@@ -17,15 +17,14 @@ public class DuplicatesInSortedArray {
         if(nums == null) return 0;
         if(nums.length == 1) return 1;
 
-        int i=0;
+        int i=1;
         for(int j=1; j<nums.length; j++){
-            if(nums[j] != nums[i]){
-                nums[i+1] = nums[j];
-                i++;
+            if(nums[j] != nums[j-1]){
+                nums[i++] = nums[j];
             }
         }
 
-        return i+1;
+        return i;
 
     }
 }

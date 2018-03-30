@@ -52,8 +52,10 @@ public class ConnectNodesAtSameLevel {
                     q.offer(p.right);
                 }
             }
-            else if(!q.isEmpty()){
-                q.add(null);
+            else {
+                if(!q.isEmpty()){
+                    q.add(null);
+                }
             }
         }
     }

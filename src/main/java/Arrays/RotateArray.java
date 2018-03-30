@@ -12,6 +12,13 @@ public class RotateArray {
         System.out.println(Arrays.toString(arr));
         bubbleRotate(arr, k);
         System.out.println(Arrays.toString(arr));
+        arr = new int[]{1, 2, 3, 4, 5, 6, 7};
+        rotate2(arr, k);
+        System.out.println(Arrays.toString(arr));
+
+        arr = new int[]{1, 2, 3, 4, 5, 6, 7};
+        rotate(arr, k);
+        System.out.println(Arrays.toString(arr));
     }
 
     // O(N) time and space
@@ -47,11 +54,10 @@ public class RotateArray {
             k = k % arr.length;
         }
 
-        int divide = arr.length - k;
-
-        reverse(arr, 0, divide - 1);
-        reverse(arr, divide, arr.length - 1);
         reverse(arr, 0, arr.length - 1);
+        reverse(arr, 0,  k-1);
+        reverse(arr, k, arr.length - 1);
+
     }
 
     //O(n*k) time and O(1) space
@@ -69,6 +75,7 @@ public class RotateArray {
                 arr[j] = arr[j - 1];
                 arr[j - 1] = temp;
             }
+            System.out.println("-> " + Arrays.toString(arr));
         }
     }
 

@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by hakanmehmed on 12/03/2018.
  */
-public class WordSearch {
+public class WordSeachIn2DArray {
     public static void main(String[] args) {
         char[][] board = {
                 {'c', 'a', 'a'},
@@ -65,7 +65,7 @@ public class WordSearch {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == firstChar) {
-                    if (helper(word, 1, board, i, j, visited)) {
+                    if (helper(word, 0, board, i, j, visited)) {
                         return true;
                     }
                 }
@@ -76,39 +76,19 @@ public class WordSearch {
 
     static boolean helper(String word, int current, char[][] board, int i, int j, boolean[][] visited) {
         if (current == word.length()) return true;
-        boolean res = false;
-        if (isValidPos(i + 1, j, board, visited) && board[i + 1][j] == word.charAt(current)) {
-            visited[i][j] = true;
-            res = helper(word, current + 1, board, i + 1, j, visited);
-            visited[i][j] = false;
-            if (res) return res;
-        }
-        if (isValidPos(i - 1, j, board, visited) && board[i - 1][j] == word.charAt(current)) {
-            visited[i][j] = true;
-            res = helper(word, current + 1, board, i - 1, j, visited);
-            visited[i][j] = false;
-            if (res) return res;
-        }
-        if (isValidPos(i, j - 1, board, visited) && board[i][j - 1] == word.charAt(current)) {
-            visited[i][j] = true;
-            res = helper(word, current + 1, board, i, j - 1, visited);
-            visited[i][j] = false;
-            if (res) return res;
-        }
-        if (isValidPos(i, j + 1, board, visited) && board[i][j + 1] == word.charAt(current)) {
-            visited[i][j] = true;
-            res = helper(word, current + 1, board, i, j + 1, visited);
-            visited[i][j] = false;
-            if (res) return res;
-        }
-        return res;
-    }
 
-    static boolean isValidPos(int i, int j, char[][] board, boolean[][] visited) {
-        if (i < 0 || j < 0 || i == board.length || j == board[i].length) {
+        if (i < 0 || i >= board.length || j < 0 || j >= board[i].length){
             return false;
         }
-        if (!visited[i][j]) return true;
-        return false;
+        if (board[i][j] != word.charAt(current) || visited[i][j]){
+            return false;
+        }
+        visited[i][j] = true;
+        boolean res =  helper(word, current + 1, board, i + 1, j, visited) ||
+                helper(word, current + 1, board, i, j + 1, visited) ||
+                helper(word, current + 1, board, i, j - 1, visited) ||
+                helper(word, current + 1, board, i - 1, j, visited);
+        visited[i][j] = false;
+        return res;
     }
 }

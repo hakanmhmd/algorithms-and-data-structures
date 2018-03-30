@@ -43,7 +43,7 @@ public class TrappingRainWater {
     }
 
     // O(1) space - two pointers
-    //So, we can say that if there is a larger bar at one end(say right), we are assured that
+    // So, we can say that if there is a larger bar at one end(say right), we are assured that
     // the water trapped would be dependant on height of bar in current direction(from left to right).
     // As soon as we find the bar at other end(right) is smaller, we start iterating in opposite
     // direction(from right to left).

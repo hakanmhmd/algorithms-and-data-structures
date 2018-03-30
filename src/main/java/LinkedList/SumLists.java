@@ -19,7 +19,7 @@ public class SumLists {
 
         System.out.println("  " + lA1.printForward());
         System.out.println("+ " + lB1.printForward());
-        LinkedListNode result = addLists2(lA1, lB1, 0);
+        LinkedListNode result = addLists2(lA1, lB1);
         System.out.println("  " + result.printForward());
     }
 
@@ -46,8 +46,8 @@ public class SumLists {
         return result;
     }
 
-    private static LinkedListNode addLists2(LinkedListNode l1, LinkedListNode l2, int carry) {
-        carry = 0;
+    private static LinkedListNode addLists2(LinkedListNode l1, LinkedListNode l2) {
+        int carry = 0;
         LinkedListNode result = new LinkedListNode();
         LinkedListNode p1 = l1;
         LinkedListNode p2 = l2;

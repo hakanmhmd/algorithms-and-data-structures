@@ -63,8 +63,13 @@ public class StockBuySell {
     }
 
 
+
+
     // if we have only one trascation to do
     private static int maxProfitOneTrans(int[] prices){
+        if (prices == null || prices.length == 0){
+            return 0;
+        }
         int profit = 0;
         int minSoFar = Integer.MAX_VALUE;
 
