@@ -10,6 +10,7 @@ public class LongestIncreasingSubsequence {
         int[] arr = {3, 4, -1, 0, 6, 2, 3}; //-1,0,2,3
         int[] input = {3, 4, -1, 5, 8, 2, 3, 12, 7, 9, 10};
         int m = findLIS(arr);
+        System.out.println(m);
         int n = findLIS2(input);
         System.out.println(n);
 
@@ -18,7 +19,7 @@ public class LongestIncreasingSubsequence {
 
 
     // same as findLIS2 but with the actual subsequence
-    private static int findLIS3(int[] arr){
+    public static int findLIS3(int[] arr){
         int[] parent = new int[arr.length];
         int[] subseq = new int[arr.length+1];
         int len = 0;
@@ -57,7 +58,7 @@ public class LongestIncreasingSubsequence {
 
 
     // O(nlogn)
-    private static int findLIS2(int[] arr) {
+    public static int findLIS2(int[] arr) {
         int[] temp = new int[arr.length];
         int[] result = new int[arr.length];
 
@@ -108,7 +109,8 @@ public class LongestIncreasingSubsequence {
 
 
     // O(n^2) solution
-    private static int findLIS(int[] arr) {
+    // works when there are duplicate elements in the array
+    public static int findLIS(int[] arr) {
         if(arr == null || arr.length == 0) return 0;
         if(arr.length == 1) return 1;
 
@@ -120,7 +122,7 @@ public class LongestIncreasingSubsequence {
         // for each i calc the length of increasing subs ending at i
         for (int i = 1; i < lis.length; i++) {
             for (int j = 0; j < i; j++) {
-                if(arr[i] > arr[j]){ // we have an increasing subsequence
+                if(arr[i] >= arr[j]){ // we have an increasing subsequence
                     lis[i] = Math.max(lis[i], lis[j]+1);
                 }
             }

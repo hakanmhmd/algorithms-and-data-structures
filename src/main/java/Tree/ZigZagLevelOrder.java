@@ -80,8 +80,8 @@ public class ZigZagLevelOrder {
         List<List<Integer>> result = new ArrayList<>();
         if(root == null) return result;
 
-        Stack<Node> stack1 = new Stack<>();
-        Stack<Node> stack2 = new Stack<>();
+        Stack<Node> stack1 = new Stack<>(); //left to right
+        Stack<Node> stack2 = new Stack<>(); // right to left
 
         stack1.push(root);
 

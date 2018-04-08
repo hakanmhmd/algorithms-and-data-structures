@@ -11,10 +11,54 @@ import java.util.List;
  */
 public class PalindromePartition {
     public static void main(String[] args) {
-        String s = "aab";
+        String s = "banana";
 
         List<List<String>> res = partition(s);
         System.out.println(res);
+
+        System.out.println(palindromPartition(s));
+    }
+
+    private static int palindromPartition(String s) {
+        boolean dp[][] = new boolean[s.length()][s.length()];
+
+        for(int i=0; i<s.length(); i++){
+            dp[i][i] = true; //single letter words
+        }
+
+        for(int i=0; i<s.length()-1; i++){
+            if(s.charAt(i) == s.charAt(i+1)){
+                dp[i][i+1] = true;
+            }
+        }
+
+        for(int len=3; len<=s.length(); len++){
+            for(int i=0; i<s.length()-len+1; i++){
+                int j = i+len-1;
+
+                if(s.charAt(i) == s.charAt(j) && dp[i+1][j-1]){
+                    dp[i][j] = true;
+                }
+            }
+        }
+
+        int[] cuts = new int[s.length()];
+
+        for(int i=0; i<s.length(); i++){
+            int temp = Integer.MAX_VALUE;
+            if(dp[0][i]){ // whole palindrome
+                cuts[i] = 0;
+            } else {
+                for(int j=0; j<i; j++){
+                    if(dp[j+1][i] && temp > cuts[j] + 1){
+                        temp = cuts[j] + 1;
+                    }
+                }
+                cuts[i] = temp;
+            }
+        }
+
+        return cuts[s.length()-1];
     }
 
     private static List<List<String>> partition(String s) {
@@ -55,4 +99,6 @@ public class PalindromePartition {
 
         return true;
     }
+
+
 }

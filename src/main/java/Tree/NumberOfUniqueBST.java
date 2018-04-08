@@ -12,8 +12,12 @@ public class NumberOfUniqueBST {
         System.out.println(totalBSTs(n, p));
     }
 
+    // 1,2,3,4
+    // s(4) = bst 1 as root + bst 2 as root + bst 3 as root + bst 4 as root
+    // bst 3 as root = s(2) * s(1)
+    // => s(4) = s(0) * s(3) + s(1) * s(2) + s(2) * s(1) + s(3) + s(0)
     private static int totalBSTs(int n, int[] p) {
-        if(n == 0 || n == 1) return 1; // basecase
+        if(n == 0 || n == 1) return 1; // base case - only 1 bst exist
 
         int possibilities = 0;
 

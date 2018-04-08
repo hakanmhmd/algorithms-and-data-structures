@@ -18,6 +18,7 @@ public class KthSmallestInBST {
         }
     }
 
+    // 4 5 6 10 14 40 45 50
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left = new Node(5);
@@ -30,6 +31,9 @@ public class KthSmallestInBST {
 
         int k = 5;
         System.out.println(findKthSmallestElement(root, k));
+
+        k = 3;
+        System.out.println(findKthLargestElement(root, k));
     }
 
     private static int findKthSmallestElement(Node root, int k) {
@@ -51,4 +55,42 @@ public class KthSmallestInBST {
 
         return result;
     }
+
+    private static int findKthLargestElement(Node root, int k) {
+        Stack<Node> s = new Stack<>();
+        Node current = root;
+
+        while(!s.isEmpty() || current != null){
+            if(current != null){
+                s.push(current);
+                current = current.right;
+            } else {
+                Node pop = s.pop();
+                k--;
+                if(k == 0) return pop.key;
+                current = pop.left;
+            }
+        }
+        return -1;
+    }
+
+    /*
+    find(Node root, int n, int[] count){
+        if(root == null) return null;
+        Node node = null;
+
+        node = find(root.right, n, count);
+
+        if(node == null){
+            count[0] += 1;
+            if(count[0] == n) node = root;
+        }
+
+        if(node == null){
+            find(root.left, n, count);
+        }
+
+        return node;
+    }
+     */
 }

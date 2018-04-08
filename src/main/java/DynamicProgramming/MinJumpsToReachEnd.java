@@ -12,6 +12,7 @@ public class MinJumpsToReachEnd {
         System.out.println(minJumps2(arr));
     }
 
+    // O(n^2)
     private static int minJumps(int[] arr) {
         int[] dp = new int[arr.length];
         dp[arr.length-1] = 1;
@@ -37,8 +38,8 @@ public class MinJumpsToReachEnd {
 
     // O(n)
     private static int minJumps2(int[] arr){
-        int ladder = arr[0];
-        int steps = arr[0];
+        int ladder = arr[0]; // keep the next ladder to jump on
+        int steps = arr[0]; // number of steps on the current ladder
         int jumps = 1;
 
         for(int i=1; i<arr.length; i++){
@@ -47,7 +48,7 @@ public class MinJumpsToReachEnd {
             steps--;
             if(steps == 0){
                 jumps++;
-                steps = ladder - i;
+                steps = ladder - i; // jump on the new ladder
             }
         }
 

@@ -4,11 +4,16 @@ package DynamicProgramming;
  * Created by hakanmehmed on 23/10/2017.
  */
 public class Fibonacci {
-    public static void main (String args[])
-    {
+    public static void main (String args[]) {
         int n = 10;
         System.out.println(fib(n));
         System.out.println(fibDP(n, new int[n+1]));
+        System.out.println(slowFib(n));
+    }
+
+    private static int slowFib(int n){
+        if(n<=1) return n;
+        return slowFib(n-1) + slowFib(n-2);
     }
 
     // space efficient
