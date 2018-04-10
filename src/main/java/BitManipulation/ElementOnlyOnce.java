@@ -1,4 +1,4 @@
-package Arrays;
+package BitManipulation;
 
 /**
  * Given an array where every element occurs three times, except one element which occurs only once.
@@ -10,10 +10,9 @@ package Arrays;
 public class ElementOnlyOnce {
     final static int INT_SIZE = 32;
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         int arr[] = {12, 1, 12, 3, 12, 1, 1, 2, 3, 2, 2, 3, 7};
-        int n = arr.length;
+        int n = 3;
 
 
         System.out.println("The element with single occurrence is " + findSingle(arr, n));
@@ -28,13 +27,13 @@ public class ElementOnlyOnce {
             sum = 0;
             x = (1 << i);
 
-            for(int j=0; j<n; j++){
-                if((arr[j] & x) == 0){
+            for(int j=0; j<arr.length; j++){
+                if((arr[j] & x) == x){
                     sum++;
                 }
             }
 
-            if(sum % 3 == 0){
+            if(sum % n == 1){
                 result |= x;
             }
         }

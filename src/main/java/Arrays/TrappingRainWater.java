@@ -16,6 +16,11 @@ public class TrappingRainWater {
         System.out.println(trappingWater2(towers));
     }
 
+    // Idea is to calc the amount of water on top of each tower
+    // For there to be water on tower, the height of the tower must be less than a tower on its left (not immediate left)
+    // and a tower on its right
+    // amount of water on top is = min(max tower on left, max tower on right) - current tower
+    // amount = 0 if there is no tower higher on left or right
     // O(n) space
     private static int trappingWater(int[] towers) {
         int[] rightMax = new int[towers.length];
@@ -30,7 +35,7 @@ public class TrappingRainWater {
             }
         }
 
-        System.out.println(Arrays.toString(rightMax));
+        //System.out.println(Arrays.toString(rightMax));
 
         int water = 0;
         int maxSeenLeft = 0;

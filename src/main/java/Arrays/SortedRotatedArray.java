@@ -54,7 +54,7 @@ public class SortedRotatedArray {
                 right = mid-1;
             }
         }
-        return nums[0]; // its not rotated
+        return 0; // its not rotated
     }
 
     // binary search

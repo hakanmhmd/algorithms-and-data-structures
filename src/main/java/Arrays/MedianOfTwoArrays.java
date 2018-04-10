@@ -24,6 +24,11 @@ public class MedianOfTwoArrays {
         int[] y = {3,4,13,17,18};
 
         System.out.println(getMedianSameLength(x, y, 0, x.length-1, 0, y.length-1));
+
+        x = new int[]{1,2,3,4};
+        y = new int[]{5,6,7,8};
+        System.out.println(getMedianSameLength(x, y, 0, x.length-1, 0, y.length-1));
+
     }
 
     // O(log n)
@@ -155,19 +160,29 @@ public class MedianOfTwoArrays {
             return (1.0 * (Math.max(x[startX], y[startY]) + Math.min(x[endX], y[endY]))) / 2;
         }
 
-        int mx = (startX + endX) / 2;
-        int my = (startY + endY) / 2;
+        int mx = startX + (endX - startX) / 2;
+        int my = startY + (endY - startY) / 2;
 
         if(x[mx] == y[my]){
             return x[mx];
         }
 
         if(x[mx] < y[my]){ // eliminate elems less than x[mx] and greater than y[my]
-            startX = mx;
-            endY = my;
+            if((endX - startX) % 2 == 0) {
+                startX = mx;
+                endY = my;
+            } else {
+                startX = mx;
+                endY = my + 1;
+            }
         } else { // eliminate elems greater than x[mx] and less than y[my]
-            startY = my;
-            endX = mx;
+            if((endY - startY) % 2 == 0) {
+                startY = my;
+                endX = mx;
+            } else {
+                startY = my;
+                endX = mx + 1;
+            }
         }
 
         return getMedianSameLength(x, y, startX, endX, startY, endY);

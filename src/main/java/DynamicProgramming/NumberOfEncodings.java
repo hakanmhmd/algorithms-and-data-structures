@@ -6,22 +6,32 @@ package DynamicProgramming;
  */
 public class NumberOfEncodings {
     public static void main(String[] args) {
-        String s = "10";
+        String s = "123";
         System.out.println(encodings(s));
         System.out.println(encodingsDP(s));
+        System.out.println(encodingsDPspace(s));
+
+        s = "00";
+        System.out.println(encodings(s));
+        System.out.println(encodingsDP(s));
+        System.out.println(encodingsDPspace(s));
     }
 
     private static int encodings(String s) {
+        return s.isEmpty() ? 0 : encodings(0, s);
+
+    }
+
+    static int encodings(int i, String s){
         int len = s.length();
-        if(len == 0 || len == 1) return 1;
+        if(i == len) return 1;
+        if(s.charAt(i) == '0') return 0;
 
-        int count = 0;
-        if(s.charAt(len-1) > '0'){
-            count += encodings(s.substring(0, len-1));
-        }
+        int count = encodings(i+1, s);
 
-        if(s.charAt(len-2) < '2' || (s.charAt(len-2) == '2' && s.charAt(len-1) < '7')){
-            count += encodings(s.substring(0, len-2));
+
+        if(i < len-1 && s.charAt(i) == '1' || (s.charAt(i) == '2' && s.charAt(i+1) < '7')){
+            count += encodings(i+2, s);
         }
 
         return count;
@@ -46,5 +56,19 @@ public class NumberOfEncodings {
             }
         }
         return dp[n];
+    }
+
+    private static int encodingsDPspace(String s){
+        int len = s.length();
+        int p =1;
+        int pp = 0;
+        for(int i=len-1; i>=0; i--){
+            int curr = s.charAt(i) == '0' ? 0 : p;
+            if(i<len-1 && (s.charAt(i) == '1' || s.charAt(i) == '2' && s.charAt(i+1) < '7')) curr += pp;
+            pp = p;
+            p = curr;
+        }
+
+        return len == 0 ? 0 : p;
     }
 }

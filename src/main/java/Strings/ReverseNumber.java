@@ -1,7 +1,7 @@
 package Strings;
 
 /**
- * Created by hakanmehmed on 03/12/2017.
+ * Given a 32-bit signed integer, reverse digits of an integer.
  */
 public class ReverseNumber {
     public static void main(String[] args) {
@@ -9,13 +9,27 @@ public class ReverseNumber {
         System.out.println(reverseNumber(num));
     }
 
-    private static int reverseNumber(int num) {
-        int reversed = 0;
-        while(num!=0){
-            int digit = num % 10;
-            reversed = reversed * 10 + digit;
-            num /= 10;
+    private static int reverseNumber(int x){
+        boolean negative = false;
+        if(x < 0){
+            negative = true;
+            x = x * -1;
         }
-        return reversed;
+        int result = 0;
+        int n =x;
+        while(n != 0){
+            int rem = n % 10;
+            int reversedNumber = result * 10 + rem;
+            // out of bounds ?
+            if ((reversedNumber - rem) / 10 != result){
+                return 0;
+            }
+            result = reversedNumber;
+            n = n / 10;
+
+        }
+
+        if(negative) return (int) result * -1;
+        else return (int) result;
     }
 }

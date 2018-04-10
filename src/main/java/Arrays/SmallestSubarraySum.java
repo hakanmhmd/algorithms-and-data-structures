@@ -8,6 +8,10 @@ public class SmallestSubarraySum {
         int[] arr = {1, 4, 45, 6, 0, 19};
         int k = 51;
         System.out.println(smallestSubArrayWithSum(arr, k));
+
+        arr = new int[]{2,3,1,1,-1,3,4};
+        k = 7;
+        System.out.println(smallestSubarrayWithExactSum(arr, k));
     }
 
     private static int smallestSubArrayWithSum(int[] arr, int k) {
@@ -29,8 +33,25 @@ public class SmallestSubarraySum {
             }
         }
 
-        return min;
+        return min == Integer.MAX_VALUE ? 0 : min;
     }
 
+    // sum == k
+    private static int smallestSubarrayWithExactSum(int[] arr, int k){
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            for(int j=i; j<arr.length && (j-i+1) < min; j++){
+                sum += arr[j];
+                if(sum == k){
+                    min = j-i+1;
+                    break;
+                }
+            }
+        }
+
+        return min;
+    }
 
 }

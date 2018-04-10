@@ -4,9 +4,9 @@ package DynamicProgramming;
  * Longest palindrom subsequence (not substring)
  * Example: lpaspal -> lpspl (lps)
  */
-public class LongestPalindromSubsequence {
+public class LongestPalindromicSubsequence {
     public static void main(String[] args) {
-        String s = "bbbab";
+        String s = "lpaspal";
 
         System.out.println(longestPalindromicSubseq(s, 0, s.length()-1));
         System.out.println(longestPalindromicSubseqBottomUp(s));

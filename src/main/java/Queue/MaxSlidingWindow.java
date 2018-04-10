@@ -1,6 +1,7 @@
 package Queue;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -8,19 +9,21 @@ import java.util.Scanner;
  */
 public class MaxSlidingWindow {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int q = in.nextInt();
-        int[] arr = new int[n];
-        for(int i=0; i<n; i++){
-            arr[i] = in.nextInt();
-        }
+//        Scanner in = new Scanner(System.in);
+//        int n = in.nextInt();
+//        int q = in.nextInt();
+//        int[] arr = new int[n];
+//        for(int i=0; i<n; i++){
+//            arr[i] = in.nextInt();
+//        }
+//
+//        for(int x=0; x<q; x++){
+//            int window = in.nextInt();
+//            System.out.println(minSlidingWindowMax(arr, window));
+//        }
 
-        for(int x=0; x<q; x++){
-            int window = in.nextInt();
-            System.out.println(minSlidingWindowMax(arr, window));
-        }
-
+        int[] arr = {1,3,-1,-3,5,3,6,7};
+        System.out.println(Arrays.toString(maxSlidingWindow(arr, 3)));
     }
 
 
@@ -51,14 +54,31 @@ public class MaxSlidingWindow {
     }
 
     // Can also be solved using a queue
-    public int[] maxSlidingWindow(int[] a, int k) {
-        if (a == null || k <= 0) return null;
+    /**
+     * Given an array nums, there is a sliding window of size k which is moving from the very
+     * left of the array to the very right. You can only see the k numbers in the window. Each
+     * time the sliding window moves right by one position.
+
+     For example,
+     Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
+
+     Window position                Max
+     ---------------               -----
+     [1  3  -1] -3  5  3  6  7       3
+     1 [3  -1  -3] 5  3  6  7       3
+     1  3 [-1  -3  5] 3  6  7       5
+     1  3  -1 [-3  5  3] 6  7       5
+     1  3  -1  -3 [5  3  6] 7       6
+     1  3  -1  -3  5 [3  6  7]      7
+     */
+    public static int[] maxSlidingWindow(int[] a, int k) {
+        if (a == null || k <= 0) return new int[0];
         int[] res = new int[a.length - k + 1];
         ArrayDeque<Integer> deque = new ArrayDeque<>();
 
         int index  = 0;
         for (int i = 0; i < a.length; i++) {
-            while (!deque.isEmpty() && deque.peekFirst() == i-k) // Ensure deque's size doesn't exceed k
+            while (!deque.isEmpty() && deque.peek() < i-k+1) // Ensure deque's size doesn't exceed k
                 deque.poll();
 
             // Remove numbers smaller than a[i] from right(a[i-1]) to left,
