@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * P(a3) = P(a2) + a3 = [a1a2a3, a1a3a2, a3a1a2, a2a1a3, a2a3a1, a3a2a1]
  *
  */
-public class PermsWithoutDups {
+public class PermutationWithoutDuplicates {
     public static void main(String[] args) {
         String str = "abs";
         ArrayList<String> perms = findPerms(str);

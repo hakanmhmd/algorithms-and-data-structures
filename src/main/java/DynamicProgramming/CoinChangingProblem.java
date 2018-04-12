@@ -41,12 +41,12 @@ public class CoinChangingProblem {
             }
         }
 
-//        for(int i = 0; i < coins.length+1; i++){
-//            for (int j = 0; j < target+1; j++) {
-//                System.out.print(m[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
+        for(int i = 0; i < coins.length+1; i++){
+            for (int j = 0; j < target+1; j++) {
+                System.out.print(m[i][j] + " ");
+            }
+            System.out.println();
+        }
 
 
         return m[coins.length][target];

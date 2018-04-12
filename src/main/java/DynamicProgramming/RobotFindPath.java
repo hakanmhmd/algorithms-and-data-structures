@@ -3,7 +3,6 @@ package DynamicProgramming;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -30,6 +29,15 @@ public class RobotFindPath {
         }
 
         System.out.println(findNumberOfWays(maze) + " ways to reach end");
+
+
+        maze = new boolean[][]{
+                {false, false, true, true},
+                {true, true, false, true},
+                {true, true, true, true},
+                {true, false, false, true}
+        };
+        System.out.println(findPathBottomLeftToBottomRight(maze));
     }
 
     private static ArrayList<Pair<Integer,Integer>> findPath(boolean[][] maze) {
@@ -82,6 +90,7 @@ public class RobotFindPath {
         for(int row=x; row>=0; row--){
             for(int col=y; col>=0; col--){
                 if(maze[row][col]){
+                    // we can only land current cell by going up or left (opposite to down and right)
                     auxMatrix[row][col] = auxMatrix[row+1][col] + auxMatrix[row][col+1];
                 } else {
                     auxMatrix[row][col] = 0;
@@ -90,5 +99,39 @@ public class RobotFindPath {
         }
 
         return auxMatrix[0][0];
+    }
+
+
+    /*
+    Given the length and width of a matrix, get the number of paths from bottom-left to bottom right.
+    You may only walk into those 3 directions ➡ (right) ↗ (upper-right) ↘ (lower-right) at each point.
+    Follow-up: optimize 2d DP to 1d DP of linear extra space.
+     */
+
+    //The dp formula will be M[i,j] = M[i - 1, j - 1] + M[i - 1, j] + M[i - 1, j + 1]
+    //Because one could only land on current cell from the 3 cells in the upper-left, left and lower-left.
+    //To make the space consumption 1d, cache the numbers in one column of the matrix at a time.
+    //Follow-up 2: Just reset path-counts for blocked cells to 0
+    private static int findPathBottomLeftToBottomRight(boolean[][] maze){
+        int rows = maze.length;
+        int cols = maze[0].length;
+        if(!maze[rows-1][0] || !maze[rows-1][cols-1]) return 0;
+        int[] oneCol = new int[rows];
+        //start from bottom left
+        oneCol[0] = 1;
+
+        for(int col=1; col<cols; col++){
+            int lower_left_value = 0;
+            for(int row=0; row<rows; row++){
+                int left_value = oneCol[row];
+                int upper_left_value = row == rows - 1 ? 0 : oneCol[row + 1];
+                oneCol[row] += lower_left_value + upper_left_value;
+                if(!maze[rows-1-row][col]) oneCol[row] = 0;
+                lower_left_value = left_value;
+            }
+        }
+
+        return oneCol[0];
+
     }
 }

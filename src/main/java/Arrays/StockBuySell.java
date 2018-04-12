@@ -9,8 +9,7 @@ import java.util.ArrayList;
  * If the given array of prices is sorted in decreasing order, then profit cannot be earned at all.
  */
 public class StockBuySell {
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws Exception {
         StockBuySell stock = new StockBuySell();
 
         // stock prices on consecutive days
@@ -66,16 +65,19 @@ public class StockBuySell {
 
 
     // if we have only one trascation to do
-    private static int maxProfitOneTrans(int[] prices){
+    // edge cases : values go down
+    private static int maxProfitOneTrans(int[] prices) throws Exception {
         if (prices == null || prices.length == 0){
             return 0;
         }
-        int profit = 0;
-        int minSoFar = Integer.MAX_VALUE;
+        if(prices.length < 2) throw new Exception();
+        int profit = prices[1] - prices[0];
+        int minSoFar = prices[0];
 
-        for(int i=0; i<prices.length; i++){
+        for(int i=1; i<prices.length; i++){
+            int potentialProfit = prices[i] - minSoFar;
+            profit = Math.max(profit, potentialProfit);
             if(prices[i] < minSoFar) minSoFar = prices[i];
-            profit = Math.max(profit, prices[i] - minSoFar);
         }
 
         return profit;

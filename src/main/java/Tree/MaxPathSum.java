@@ -38,17 +38,12 @@ public class MaxPathSum {
         return max[0];
     }
 
-    public static int calculateSum(Node root, int[] max) {
-        if (root == null)
-            return 0;
-
-        int left = calculateSum(root.left, max);
-        int right = calculateSum(root.right, max);
-
-        int current = Math.max(root.data, Math.max(root.data + left, root.data + right));
-
-        max[0] = Math.max(max[0], Math.max(current, left + root.data + right));
-
+    public static int calculateSum(Node node, int[] max) {
+        if(node == null) return 0;
+        int left = Math.max(0, calculateSum(node.left, max));
+        int right = Math.max(0, calculateSum(node.right, max));
+        int current = Math.max(left, right) + node.data;
+        max[0] = Math.max(max[0], left + right + node.data);
         return current;
     }
 }

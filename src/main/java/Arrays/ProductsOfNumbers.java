@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class ProductsOfNumbers {
 
     // without division
+    // edges cases - zeros, less tham 2 ints
     public static void main(String[] args) {
         int[] a  = new int[]{1,2,3,4};
         int[] products_left = new int[a.length];
@@ -37,7 +38,8 @@ public class ProductsOfNumbers {
     }
 
     // constant space
-    public int[] productExceptSelf(int[] nums) {
+    public int[] productExceptSelf(int[] nums) throws Exception {
+        if(nums.length < 2) throw new Exception();
         int[] result = new int[nums.length];
         for (int i = 0, tmp = 1; i < nums.length; i++) {
             result[i] = tmp;

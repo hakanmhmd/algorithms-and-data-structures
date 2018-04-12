@@ -4,6 +4,11 @@ import java.util.Arrays;
 
 /**
  * Given an integer array, find a maximum product of a triplet in array.
+ *
+ *
+ * What if we wanted the highest product of 4 items?
+ * What if we wanted the highest product of kk items?
+ * If our highest product is really big, it could overflow. ↴ How should we protect against this?
  */
 public class MaxProductOfThree {
     public static void main(String[] args) {

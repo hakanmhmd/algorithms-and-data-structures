@@ -9,6 +9,12 @@ import java.util.Comparator;
 
 /**
  * Given a set of interval group overlapping
+ *
+ * Cases: [(1, 2), (2, 3)]
+ *        [(1, 5), (2, 3)]
+ *
+ *  What if we did have an upper bound on the input values? Could we improve our runtime? Would it cost us memory?
+ *  Could we do this "in-place" on the input list and save some space? What are the pros and cons of doing this in-place?
  */
 public class GroupIntervals {
     static class Interval {
@@ -24,10 +30,10 @@ public class GroupIntervals {
     public static void main(String[] args) {
         Interval arr[] =  {
                 new Interval(1,3),
-                new Interval(2,4),
+                new Interval(0,4),
                 new Interval(0,3),
                 new Interval(5,7),
-                new Interval(5,7)
+                new Interval(7,9)
         };
         mergeIntervals(arr);
 
@@ -39,7 +45,7 @@ public class GroupIntervals {
 
         int index = 1;
         for (int i = 1; i < arr.length; i++) {
-            if(arr[i].start < arr[index-1].end){
+            if(arr[i].start <= arr[index-1].end){
                 arr[index-1].end = Math.max(arr[index-1].end, arr[i].end);
                 arr[index-1].start = Math.min(arr[index-1].start, arr[i].start);
             } else {

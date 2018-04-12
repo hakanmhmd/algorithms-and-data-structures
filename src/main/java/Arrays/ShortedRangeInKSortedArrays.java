@@ -1,5 +1,6 @@
 package Arrays;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -25,7 +26,7 @@ public class ShortedRangeInKSortedArrays {
 
     public static void main(String[] args) {
         int[][] lists = {{4,10,15,24,26}, {0,9,12,20}, {5,18,22,30}};
-        System.out.println(smallestRange(lists));
+        System.out.println(Arrays.toString(smallestRange(lists)));
     }
 
     public static int[] smallestRange(int[][] nums) {
