@@ -1,4 +1,4 @@
-package Geometry;
+package Math;
 
 import java.util.ArrayList;
 import java.util.HashSet;

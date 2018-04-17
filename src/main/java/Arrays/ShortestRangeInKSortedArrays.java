@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
  * You have k lists of sorted integers in ascending order. Find the smallest range that includes
  * at least one number from each of the k lists.
  */
-public class ShortedRangeInKSortedArrays {
+public class ShortestRangeInKSortedArrays {
     static class Element implements Comparable{
         int listIndex;
         int value;

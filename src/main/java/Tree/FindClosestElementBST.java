@@ -41,7 +41,7 @@ public class FindClosestElementBST {
             if(target>root.key){
                 double diff = Math.abs(root.key-target);
                 if(diff<min){
-                    min = Math.min(min, diff);
+                    min = diff;
                     result = root.key;
                 }
                 root = root.right;

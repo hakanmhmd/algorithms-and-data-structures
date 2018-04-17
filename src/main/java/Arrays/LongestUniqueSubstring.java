@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class LongestUniqueSubstring {
     public static void main(String[] args) {
-        String s = "abcabcbb";
+        String s = "google";
         System.out.println(longestSubstring(s));
 
         s = "karappa";
@@ -68,11 +68,14 @@ public class LongestUniqueSubstring {
         int result = 0;
         int start = 0;
         char[] arr = s.toCharArray();
-
+        String res = "";
         for (int i = 0; i < arr.length; i++) {
             char current = arr[i];
             if (flag[current]) {
-                result = Math.max(result, i - start);
+                if(result < i-start){
+                    result = i-start;
+                    res = s.substring(start, i);
+                }
                 for (int k = start; k < i; k++) {
                     if (arr[k] == current) {
                         start = k + 1;
@@ -85,8 +88,26 @@ public class LongestUniqueSubstring {
             }
         }
 
-        result = Math.max(arr.length - start, result);
+        if(result < arr.length-start){
+            result = arr.length-start;
+            res = s.substring(start, arr.length);
+        }
+        System.out.println(res);
 
         return result;
     }
+
+    /*
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), ans = 0;
+        int[] index = new int[128]; // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            i = Math.max(index[s.charAt(j)], i);
+            ans = Math.max(ans, j - i + 1);
+            index[s.charAt(j)] = j + 1;
+        }
+        return ans;
+    }
+     */
 }

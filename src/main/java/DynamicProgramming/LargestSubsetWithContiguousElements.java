@@ -8,7 +8,6 @@ import java.util.HashSet;
 public class LargestSubsetWithContiguousElements {
     public static void main(String[] args) {
         int[] arr = {1,3,8,10,14,2,4};
-
         System.out.println(findSubset(arr));
     }
 

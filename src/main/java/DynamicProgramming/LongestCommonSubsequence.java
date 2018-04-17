@@ -14,9 +14,7 @@ package DynamicProgramming;
  L(X[0..m-1], Y[0..n-1]) = MAX ( L(X[0..m-2], Y[0..n-1]), L(X[0..m-1], Y[0..n-2])
  */
 public class LongestCommonSubsequence {
-
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
         String s1 = "AGGTAB";
         String s2 = "GXTXAYB";
@@ -43,12 +41,10 @@ public class LongestCommonSubsequence {
     }
 
     // tabulated bottom up implementation
-    int lcs2( char[] X, char[] Y, int m, int n )
-    {
+    int lcs2( char[] X, char[] Y, int m, int n ) {
         int L[][] = new int[m+1][n+1];
 
-        for (int i=0; i<=m; i++)
-        {
+        for (int i=0; i<=m; i++) {
             for (int j=0; j<=n; j++)
             {
                 if (i == 0 || j == 0)

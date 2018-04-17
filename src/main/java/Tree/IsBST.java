@@ -18,10 +18,8 @@ public class IsBST {
 
     static Node root;
 
-    static Node prev = null;
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         IsBST tree = new IsBST();
         tree.root = new Node(4);
         tree.root.left = new Node(4);
@@ -41,35 +39,37 @@ public class IsBST {
     }
 
     public static boolean isBST() {
-        if(root == null) return true;
+        if (root == null) return true;
         return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
 
     private static boolean isBSTUtil(Node root, int minValue, int maxValue) {
-        if(root == null) return true;
-        if(root.data < minValue || root.data > maxValue){
+        if (root == null) return true;
+        if (root.data < minValue || root.data > maxValue) {
             return false;
         }
 
         return (isBSTUtil(root.left, minValue, root.data) && isBSTUtil(root.right, root.data, maxValue));
     }
 
+    static Node prev = null;
+
     // Using in order traversal and no additional DS
     private static boolean isBST(Node node) {
-        if(node != null){
-            if(!isBST(node.left)){
-                return false;
-            }
-
-            if(prev != null && node.data < prev.data){
-                return false;
-            }
-            prev = node;
-            return isBST(node.right);
+        if (node == null) return true;
+        if (!isBST(node.left)) {
+            return false;
         }
-        return true;
+
+        if (prev != null && node.data < prev.data) {
+            return false;
+        }
+        prev = node;
+
+        return isBST(node.right);
     }
+
 
         public boolean isValidBST(Node root){
         if (root == null){

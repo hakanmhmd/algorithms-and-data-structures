@@ -8,23 +8,23 @@ import java.util.Stack;
 public class BinarySearchTree {
     public TreeNode root;
 
-    public BinarySearchTree(){
+    public BinarySearchTree() {
         root = null;
     }
 
-    public void insert(int key){
+    public void insert(int key) {
         root = insert(root, key);
     }
 
     private TreeNode insert(TreeNode root, int key) {
-        if(root == null){
+        if (root == null) {
             root = new TreeNode(key);
             return root;
         }
 
-        if(key < root.key){
+        if (key < root.key) {
             root.left = insert(root.left, key);
-        } else if(key > root.key){
+        } else if (key > root.key) {
             root.right = insert(root.right, key);
         }
 
@@ -68,7 +68,7 @@ public class BinarySearchTree {
     }
 
     private static void postorderTraversal(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return;
         }
         postorderTraversal(root.left);
@@ -77,46 +77,46 @@ public class BinarySearchTree {
     }
 
     private static void postorderTraversalIter(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return;
         }
 
-        Stack<TreeNode> s1 = new Stack<>();
-        Stack<TreeNode> s2 = new Stack<>();
-        s1.push(root);
+        Stack<TreeNode> temp = new Stack<>();
+        Stack<TreeNode> all = new Stack<>();
+        temp.push(root);
 
-        while(!s1.isEmpty()){
-            TreeNode temp = s1.pop();
-            s2.push(temp);
+        while (!temp.isEmpty()) {
+            TreeNode pop = temp.pop();
+            all.push(pop);
 
-            if(temp.left != null) s1.push(temp.left);
-            if(temp.right != null) s1.push(temp.right);
+            if (pop.left != null) temp.push(pop.left);
+            if (pop.right != null) temp.push(pop.right);
         }
 
-        while(!s2.isEmpty()){
-            System.out.print(s2.pop().key + " ");
+        while (!all.isEmpty()) {
+            System.out.print(all.pop().key + " ");
         }
 
     }
 
     private static void postorderTraversalIterOneStack(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return;
         }
         Stack<TreeNode> s = new Stack<>();
         TreeNode currentNode = root;
         s.push(root);
 
-        while(!s.isEmpty() || currentNode != null){
-            if(currentNode != null) {
+        while (!s.isEmpty() || currentNode != null) {
+            if (currentNode != null) {
                 s.push(currentNode);
                 currentNode = currentNode.left;
             } else {
                 TreeNode temp = s.peek().right;
-                if(temp == null) { // if it has right child
+                if (temp == null) { // if it has right child
                     temp = s.pop();
                     System.out.print(temp.key + " ");
-                    while(!s.isEmpty() && temp == s.peek().right){
+                    while (!s.isEmpty() && temp == s.peek().right) {
                         temp = s.pop();
                         System.out.print(temp.key + " ");
                     }
@@ -128,11 +128,10 @@ public class BinarySearchTree {
         }
 
 
-
     }
 
     private static void inorderTraversal(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return;
         }
         inorderTraversal(root.left);
@@ -140,26 +139,27 @@ public class BinarySearchTree {
         inorderTraversal(root.right);
     }
 
-    private static void inorderTraversalIter(TreeNode root){
-        if(root == null) return;
+    private static void inorderTraversalIter(TreeNode root) {
+        if (root == null) return;
         Stack<TreeNode> s = new Stack<>();
-        TreeNode currentNode=root;
+        TreeNode currentNode = root;
 
-        while(!s.isEmpty() || currentNode != null){
-            if(currentNode != null){
+        while (!s.isEmpty() || currentNode != null) {
+            while (currentNode != null) {
                 s.push(currentNode);
                 currentNode = currentNode.left;
-            } else {
-                TreeNode current = s.pop();
-                System.out.print(current.key + " ");
-                currentNode = current.right;
             }
+
+            TreeNode current = s.pop();
+            System.out.print(current.key + " ");
+            currentNode = current.right;
+
         }
 
     }
 
     private static void preorderTraversal(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return;
         }
         System.out.print(root.key + " ");
@@ -167,17 +167,17 @@ public class BinarySearchTree {
         preorderTraversal(root.right);
     }
 
-    private static void preorderTraversalIter(TreeNode root){
-        if(root == null) return;
+    private static void preorderTraversalIter(TreeNode root) {
+        if (root == null) return;
         Stack<TreeNode> s = new Stack<>();
         s.push(root);
 
-        while(!s.isEmpty()){
+        while (!s.isEmpty()) {
             TreeNode current = s.pop();
             System.out.print(current.key + " ");
 
-            if(current.right != null) s.push(current.right);
-            if(current.left != null) s.push(current.left);
+            if (current.right != null) s.push(current.right);
+            if (current.left != null) s.push(current.left);
         }
 
     }

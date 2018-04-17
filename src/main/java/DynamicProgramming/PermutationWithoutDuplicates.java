@@ -18,6 +18,9 @@ public class PermutationWithoutDuplicates {
         for (int i = 0; i < perms.size(); i++) {
             System.out.println(perms.get(i));
         }
+
+        System.out.println();
+        permute(str, 0, str.length()-1);
     }
 
     private static ArrayList<String> findPerms(String str) {
@@ -25,8 +28,8 @@ public class PermutationWithoutDuplicates {
 
         ArrayList<String> perms = new ArrayList<>();
         //base case
-        if(str.length() == 0){
-            perms.add("");
+        if(str.length() <= 1){
+            perms.add(str);
             return perms;
         }
 
@@ -47,5 +50,28 @@ public class PermutationWithoutDuplicates {
         String start = word.substring(0, i);
         String end = word.substring(i);
         return start + c + end;
+    }
+
+    private static void permute(String str, int l, int r) {
+        if (l == r)
+            System.out.println(str);
+        else
+        {
+            for (int i = l; i <= r; i++)
+            {
+                str = swap(str,l,i);
+                permute(str, l+1, r);
+                str = swap(str,l,i);
+            }
+        }
+    }
+
+    public static String swap(String a, int i, int j) {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i] ;
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
     }
 }

@@ -72,6 +72,22 @@ public class Knapsack {
         return K[n][W];
     }
 
+    private static int unboundedKnapsack(int W, int[] wt, int[] val, int n){
+        // dp[i] is going to store maximum value
+        // with knapsack capacity i.
+        int[] dp = new int[W+1];
+
+        for(int i=0; i<=W; i++){
+            for(int j=0; j<n; j++){
+                if(wt[j] <= i){
+                    dp[i] = max(dp[i], dp[i-wt[j] + val[j]]);
+                }
+            }
+        }
+
+        return dp[W];
+    }
+
     private static int max(int a, int b) {
         return (a>b) ? a : b;
     }
