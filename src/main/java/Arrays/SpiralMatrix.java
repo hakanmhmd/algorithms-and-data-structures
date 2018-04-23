@@ -1,7 +1,9 @@
 package Arrays;
 
 /**
- * Created by hakanmehmed on 11/03/2018.
+ * Print matrix in spiral form
+ *
+ * For anti spiral form use stack
  */
 public class SpiralMatrix {
     public static void main(String[] args) {

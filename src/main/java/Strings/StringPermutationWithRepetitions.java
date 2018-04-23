@@ -1,11 +1,11 @@
-package Arrays;
+package Strings;
 
 import java.util.ArrayList;
 
 /**
  * Permutation of a string with duplication
  */
-public class PermutationWithRepetitions {
+public class StringPermutationWithRepetitions {
     public static void main(String[] args) {
         String s = "abc";
         System.out.println(perms("", s, new ArrayList<>()));

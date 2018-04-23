@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package Strings;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,9 @@ import java.util.ArrayList;
  * P(a2) = P(a1) + a2 inserted into all possible locations = [a1a2, a2a1]
  * P(a3) = P(a2) + a3 = [a1a2a3, a1a3a2, a3a1a2, a2a1a3, a2a3a1, a3a2a1]
  *
- */
-public class PermutationWithoutDuplicates {
+ **/
+
+public class StringPermutations {
     public static void main(String[] args) {
         String str = "abs";
         ArrayList<String> perms = findPerms(str);
@@ -55,10 +56,8 @@ public class PermutationWithoutDuplicates {
     private static void permute(String str, int l, int r) {
         if (l == r)
             System.out.println(str);
-        else
-        {
-            for (int i = l; i <= r; i++)
-            {
+        else {
+            for (int i = l; i <= r; i++) {
                 str = swap(str,l,i);
                 permute(str, l+1, r);
                 str = swap(str,l,i);

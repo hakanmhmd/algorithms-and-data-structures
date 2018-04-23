@@ -20,6 +20,9 @@ public class LongestIncreasingSubsequence {
 
     // same as findLIS2 but with the actual subsequence
     public static int findLIS3(int[] arr){
+        if(arr == null || arr.length == 0) return 0;
+        if(arr.length == 1) return 1;
+
         int[] parent = new int[arr.length];
         int[] subseq = new int[arr.length+1];
         int len = 0;
@@ -53,6 +56,8 @@ public class LongestIncreasingSubsequence {
         }
 
         System.out.println(Arrays.toString(lis));
+        System.out.println(Arrays.toString(subseq));
+        System.out.println(Arrays.toString(parent));
         return len;
     }
 

@@ -31,9 +31,9 @@ public class BinaryTreePaths {
 
         System.out.println(binaryTreePaths(root));
     }
-    public static List<String> binaryTreePaths(Node root) {
+    public static List<List<Integer>> binaryTreePaths(Node root) {
 
-        List<String> res = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
         if(root == null) return res;
         helper(res, root, new ArrayList<Integer>());
         return res;
@@ -45,29 +45,24 @@ public class BinaryTreePaths {
         if (root.right != null) searchBT(root.right, path + root.data + "->", answer);
     }
 
-    static void helper(List<String> res, Node root, ArrayList<Integer> currentPath){
-        if(root.left == null && root.right == null) {
-            currentPath.add(root.data);
-            StringBuilder sb = new StringBuilder();
-            int i;
-            for(i=0; i<currentPath.size()-1; i++){
-                sb.append(currentPath.get(i)).append("->");
-            }
-            sb.append(currentPath.get(i));
-            res.add(sb.toString());
-            currentPath.remove(currentPath.size()-1);
+    private static void helper(List<List<Integer>> res, Node root, ArrayList<Integer> temp) {
+        temp.add(root.data);
+
+        if(root.left == null && root.right == null){
+            res.add(new ArrayList<>(temp));
             return;
         }
+
         if(root.left != null){
-            currentPath.add(root.data);
-            helper(res, root.left, currentPath);
-            currentPath.remove(currentPath.size()-1);
+            helper(res, root.left, temp);
+            temp.remove(temp.size()-1);
         }
+
         if(root.right != null){
-            currentPath.add(root.data);
-            helper(res, root.right, currentPath);
-            currentPath.remove(currentPath.size()-1);
+            helper(res, root.right, temp);
+            temp.remove(temp.size()-1);
         }
+
     }
 
     //bfs

@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * O(2^n)
  */
-public class AllSubsetsOfSet {
+public class Subsets {
     public static void main(String[] args) {
         Integer[] set = {0, 1, 2, 3};
         findAllSubsets(set);
@@ -34,23 +34,21 @@ public class AllSubsetsOfSet {
     private static void subsets(Integer[] set){
         Arrays.sort(set);
         List<List<Integer>> l = new ArrayList<>();
-        for(int i=0; i<=set.length; i++){
-            subsetHelper(set, i, 0, l, new ArrayList<>());
-        }
+        //for(int i=0; i<=set.length; i++){
+            subsetHelper(set, 0, l, new ArrayList<>());
+        //}
 
         for (List<Integer> integers : l) {
             System.out.println(integers);
         }
     }
 
-    private static void subsetHelper(Integer[] set, int current, int start, List<List<Integer>> l, ArrayList<Integer> curr){
-        if(curr.size() == current){
-            l.add(new ArrayList<>(curr));
-            return;
-        }
+    private static void subsetHelper(Integer[] set, int start, List<List<Integer>> l, ArrayList<Integer> curr){
+        l.add(new ArrayList<>(curr));
+
         for(int i=start; i<set.length; i++){
             curr.add(set[i]);
-            subsetHelper(set, current, i+1, l, curr);
+            subsetHelper(set, i+1, l, curr);
             curr.remove(curr.size()-1);
         }
     }

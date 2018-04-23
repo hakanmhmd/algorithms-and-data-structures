@@ -1,9 +1,6 @@
 package Strings;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Assume you have a dictionary and given a word, find whether its abbreviation is unique in the
@@ -45,7 +42,7 @@ public class UniqueWordAbbreviation {
 
     public static boolean validWordAbbreviation(String word, String abbr) {
         if (word.length() < 2){
-            return word == abbr;
+            return Objects.equals(word, abbr);
         }
         int i = 0;
         int j = 0;

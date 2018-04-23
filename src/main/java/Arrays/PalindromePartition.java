@@ -16,7 +16,7 @@ public class PalindromePartition {
         List<List<String>> res = partition(s);
         System.out.println(res);
 
-        System.out.println(palindromPartition(s));
+        System.out.println("Minumum cuts: " + palindromPartition(s));
     }
 
     private static int palindromPartition(String s) {
@@ -61,6 +61,8 @@ public class PalindromePartition {
         return cuts[s.length()-1];
     }
 
+    /////////////////////////////////
+
     private static List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
 
@@ -99,6 +101,5 @@ public class PalindromePartition {
 
         return true;
     }
-
 
 }

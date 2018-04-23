@@ -61,11 +61,11 @@ public class WordLadder {
 
     // Word ladder 2 - print path of all shortest routes
     public List<List<String>> findLadders(String start, String end, List<String> wordList) {
-        HashSet<String> dict = new HashSet<String>(wordList);
-        List<List<String>> res = new ArrayList<List<String>>();
-        HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for every node
-        HashMap<String, Integer> distance = new HashMap<String, Integer>();// Distance of every node from the start node
-        ArrayList<String> solution = new ArrayList<String>();
+        HashSet<String> dict = new HashSet<>(wordList);
+        List<List<String>> res = new ArrayList<>();
+        HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<>();// Neighbors for every node
+        HashMap<String, Integer> distance = new HashMap<>();// Distance of every node from the start node
+        ArrayList<String> solution = new ArrayList<>();
 
         dict.add(start);
         bfs(start, end, dict, nodeNeighbors, distance);
@@ -76,9 +76,9 @@ public class WordLadder {
     // BFS: Trace every node's distance from the start node (level by level).
     private void bfs(String start, String end, Set<String> dict, HashMap<String, ArrayList<String>> nodeNeighbors, HashMap<String, Integer> distance) {
         for (String str : dict)
-            nodeNeighbors.put(str, new ArrayList<String>());
+            nodeNeighbors.put(str, new ArrayList<>());
 
-        Queue<String> queue = new LinkedList<String>();
+        Queue<String> queue = new LinkedList<>();
         queue.offer(start);
         distance.put(start, 0);
 
