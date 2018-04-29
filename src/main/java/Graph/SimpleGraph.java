@@ -30,6 +30,7 @@ public class SimpleGraph {
             return;
         }
         adjList[source].add(dest);
+        adjList[dest].add(source);
     }
 
     public LinkedList<Integer>[] getNodes(){

@@ -11,8 +11,7 @@ public class MissingElementInSequence {
 
     private static boolean correctlyPlaced(int index, int number) {
         // remember we are using 0 based indexing scheme
-        if (number == (index + 1))
-        {
+        if (number == (index + 1)) {
             return true;
         }
 

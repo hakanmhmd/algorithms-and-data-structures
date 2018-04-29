@@ -1,5 +1,6 @@
 package GameTheory;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -89,7 +90,7 @@ public class GameOfStones {
                 String winnerOf5 = findWinner(n - 5, mem);
                 String winnerOf3 = findWinner(n - 3, mem);
                 String winnerOf2 = findWinner(n - 2, mem);
-                if (winnerOf2 == "First" && winnerOf3 == "First" && winnerOf5 == "First") {
+                if (Objects.equals(winnerOf2, "First") && Objects.equals(winnerOf3, "First") && Objects.equals(winnerOf5, "First")) {
                     mem[n] = "Second";
                 } else {
                     mem[n] = "First";

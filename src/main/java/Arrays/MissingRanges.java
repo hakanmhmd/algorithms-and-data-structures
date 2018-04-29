@@ -40,7 +40,6 @@ public class MissingRanges {
 
         int current = end;
 
-
         int diff = current-prev-1;
         if(diff != 0){
             if(diff == 1){
@@ -53,7 +52,7 @@ public class MissingRanges {
     }
 
     public static List<String> summaryRanges(int[] nums) {
-        List<String> list=new ArrayList();
+        List<String> list=new ArrayList<>();
         if(nums.length==1){
             list.add(nums[0]+"");
             return list;

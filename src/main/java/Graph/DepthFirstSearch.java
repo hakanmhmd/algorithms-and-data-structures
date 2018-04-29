@@ -1,6 +1,7 @@
 package Graph;
 
 import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * O(V+E) where V is the number of vertices and E is the number of edges
@@ -37,6 +38,46 @@ public class DepthFirstSearch {
             if(!visited[next]){
                 recursiveDFS(next, visited);
             }
+        }
+    }
+
+    void DFSIter(SimpleGraph g, int start) {
+        // Initially mark all vertices as not visited
+        boolean[] visited = new boolean[g.getCount()];
+        for (int i = 0; i < g.getCount(); i++)
+            visited[i] = false;
+
+        // Create a stack for DFS
+        Stack<Integer> stack = new Stack<>();
+
+        // Push the current source node
+        stack.push(start);
+
+        while(!stack.empty()) {
+            // Pop a vertex from stack and print it
+            Integer s = stack.peek();
+            stack.pop();
+
+            // Stack may contain same vertex twice. So
+            // we need to print the popped item only
+            // if it is not visited.
+            if(!visited[s]) {
+                System.out.print(s + " ");
+                visited[s] = true;
+            }
+
+            // Get all adjacent vertices of the popped vertex s
+            // If a adjacent has not been visited, then puah it
+            // to the stack.
+            Iterator<Integer> itr = g.getNeighbours(s);
+
+            while (itr.hasNext())
+            {
+                int v = itr.next();
+                if(!visited[v])
+                    stack.push(v);
+            }
+
         }
     }
 

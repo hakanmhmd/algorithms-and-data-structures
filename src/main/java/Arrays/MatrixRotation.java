@@ -60,17 +60,16 @@ public class MatrixRotation {
             int lastElement = n-i-1;
 
             for(int j=firstElement; j<lastElement; j++){
-                int offset = j-firstElement;
-
                 int right = matrix[j][lastElement];
+
                 //bottom->right
-                matrix[j][lastElement] = matrix[lastElement][lastElement-offset];
+                matrix[j][lastElement] = matrix[lastElement][n-1-j];
 
                 //left->bottom
-                matrix[lastElement][lastElement-offset] = matrix[lastElement-offset][firstElement];
+                matrix[lastElement][n-1-j] = matrix[n-1-j][firstElement];
 
                 //top->left
-                matrix[lastElement-offset][firstElement] = matrix[firstElement][j];
+                matrix[n-1-j][firstElement] = matrix[firstElement][j];
 
                 //right->top
                 matrix[firstElement][j] = right;

@@ -1,5 +1,7 @@
 package Arrays;
 
+import java.util.Arrays;
+
 /**
  * There is a garden with N slots. In each slot, there is a flower. The N flowers will bloom one by one in N days.
  * In each day, there will be exactly one flower blooming and it will be in the status of blooming since then.
@@ -14,6 +16,14 @@ package Arrays;
  and also the number of flowers between them is k and these flowers are not blooming.
 
  If there isn't such day, output -1.
+
+ Intuition
+
+ For each contiguous block ("window") of k positions in the flower bed, we know it satisfies the condition
+ in the problem statement if the minimum blooming date of this window is larger than the blooming date of
+ the left and right neighbors.
+
+ Because these windows overlap, we can calculate these minimum queries more efficiently using a sliding window structure.
  */
 public class KEmptySlots {
     public static void main(String[] args) {
@@ -26,6 +36,7 @@ public class KEmptySlots {
         for (int i = 0; i < flowers.length; i++) {
             days[flowers[i] - 1] = i + 1;
         }
+        System.out.println(Arrays.toString(days));
 
         int ans = Integer.MAX_VALUE;
         int left = 0, right = k+1;

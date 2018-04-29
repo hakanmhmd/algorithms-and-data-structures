@@ -1,11 +1,6 @@
 package Arrays;
 
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 /**
  * Given a set of interval group overlapping
@@ -37,6 +32,25 @@ public class GroupIntervals {
         };
         mergeIntervals(arr);
 
+        System.out.println(minMeetingRooms(arr));
+    }
+
+    private static int minMeetingRooms(Interval[] arr) {
+        Arrays.sort(arr, new IntervalComparator());
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+        int count = 1;
+        q.offer(arr[0].end);
+
+        for(int i=1; i<arr.length; i++){
+            if(arr[i].start < q.peek()){
+                count++;
+            } else {
+                q.poll();
+            }
+            q.offer(arr[i].end);
+        }
+
+        return count;
     }
 
     private static void mergeIntervals(Interval[] arr) {

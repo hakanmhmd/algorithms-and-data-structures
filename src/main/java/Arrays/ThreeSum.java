@@ -14,6 +14,10 @@ public class ThreeSum {
         System.out.println(solutions);
 
         System.out.println(threeSumClosest(s, 8));
+
+        int[] arr = {-2, 0, 1, 3};
+        int t = 2;
+        System.out.println(threeSumSmaller(arr, t));
     }
 
     private static ArrayList<ArrayList<Integer>> threeSum(int[] input, int target) {
@@ -51,6 +55,43 @@ public class ThreeSum {
         }
 
         return result;
+    }
+
+    //Given an array of n integers nums and a target, find the number of index triplets i, j, k with 0 <= i < j < k < n
+    // that satisfy the condition nums[i] + nums[j] + nums[k] < target.
+    private static ArrayList<ArrayList<Integer>> threeSumSmaller(int[] nums, int target){
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+
+        for(int i=0; i<nums.length-2; i++){
+            int l = i+1;
+            int r = nums.length-1;
+
+            while(l<r){
+                if(nums[i] + nums[l] + nums[r] < target){
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[l]);
+                    temp.add(nums[r]);
+                    res.add(temp);
+
+                    int k = r;
+                    for(int j=k-1; j>l; j--){
+                        ArrayList<Integer> newAl = new ArrayList<>();
+                        newAl.add(nums[i]);
+                        newAl.add(nums[l]);
+                        newAl.add(nums[j]);
+                        res.add(newAl);
+                    }
+
+                    l++;
+                } else {
+                    r--;
+                }
+            }
+        }
+
+        return res;
     }
 
     private static int threeSumClosest(int[] nums, int target){
