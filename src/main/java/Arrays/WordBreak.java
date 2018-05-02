@@ -36,7 +36,7 @@ public class WordBreak {
             for(int j=0; j<i; j++){
                 if(!f[j]) continue;
                 String prefix = s.substring(j, i);
-
+                //System.out.println(prefix);
                 if(set.contains(prefix)){
                     f[i] = true;
                     break;

@@ -15,9 +15,9 @@ public class Find2Numbers {
         int xor = 0;
         for(int i: arr) xor ^= i;
         int num1 = 0, num2 = 0;
-        int difBit = xor & ~(xor - 1);
+        int setBit = xor & ~(xor - 1); //rightmost set bit
         for(int i = 0; i < arr.length; i++){
-            if((difBit & arr[i]) == 0){
+            if((setBit & arr[i]) == 0){
                 num1 ^= arr[i];
             }else{
                 num2 ^= arr[i];

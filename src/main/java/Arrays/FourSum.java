@@ -15,6 +15,11 @@ public class FourSum {
         System.out.println(solutions);
     }
 
+    // Different solution - put all possible pairs in aux array
+    // traverse in aux and use hashtable - search for X - (current sum) in it
+    // make sure all the elements are distinct
+
+    // O(n3)
     private static ArrayList<ArrayList<Integer>> fourSum(int[] input, int target) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         if(input == null || input.length < 4) return result;

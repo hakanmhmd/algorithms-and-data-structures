@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GeneralizedAbbreviation {
     public static void main(String[] args) {
         String s = "word";
-
+        System.out.println(abbr("apple", 12));
         System.out.println(abbreviations(s));
     }
 

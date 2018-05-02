@@ -1,40 +1,48 @@
 package Arrays;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Given a string, find the length of the longest substring without repeating characters.
  */
 public class LongestUniqueSubstring {
     public static void main(String[] args) {
-        String s = "google";
-        System.out.println(longestSubstring(s));
-
-        s = "karappa";
+        String s = "karappa";
         int m = 2;
         System.out.println(longestSubstringWithMUnique(s, m));
+
+        s = "google";
+        System.out.println(longestSubstring(s));
+        System.out.println(lengthOfLongestSubstring2(s));
+        System.out.println(lengthOfLongestSubstring3(s));
     }
 
     // addition: longest substring with m unique chars
     // karappa, 2 -> appa
     private static int longestSubstringWithMUnique(String s, int m){
+        if(s==null || s.length() == 0 || m == 0) return 0;
+        if(s.length() < m) return s.length();
+
         HashMap<Character, Integer> currentSubstring = new HashMap<>();
         int start = 0;
         int end = 0;
         int result = 1;
-        currentSubstring.put(s.charAt(0), 1);
 
         int substringStart = 0;
 
-        for(int i=1; i<s.length(); i++){
-            if(currentSubstring.containsKey(s.charAt(i))){
-                currentSubstring.put(s.charAt(i), currentSubstring.get(s.charAt(i)) + 1);
+        while(end < s.length()){
+            if(currentSubstring.containsKey(s.charAt(end))){
+                currentSubstring.put(s.charAt(end), currentSubstring.get(s.charAt(end)) + 1);
             } else {
-                currentSubstring.put(s.charAt(i), 1);
+                currentSubstring.put(s.charAt(end), 1);
             }
-            end++;
 
             if(currentSubstring.size() > m){
+                if(end - start > result){
+                    result = end-start;
+                    substringStart = start;
+                }
                 // start removing from start
                 while(currentSubstring.size() > m){
                     int count = currentSubstring.get(s.charAt(start));
@@ -45,12 +53,13 @@ public class LongestUniqueSubstring {
                     }
                     start++;
                 }
-            } else {
-                if(end - start+1 > result){
-                    result = end-start+1;
-                    substringStart = start;
-                }
             }
+
+            end++;
+        }
+        if(end - start > result){
+            result = end-start;
+            substringStart = start;
         }
 
         System.out.println(s.substring(substringStart, substringStart + result));
@@ -97,8 +106,8 @@ public class LongestUniqueSubstring {
         return result;
     }
 
-    /*
-    public int lengthOfLongestSubstring(String s) {
+
+    public static int lengthOfLongestSubstring2(String s) {
         int n = s.length(), ans = 0;
         int[] index = new int[128]; // current index of character
         // try to extend the range [i, j]
@@ -111,7 +120,7 @@ public class LongestUniqueSubstring {
     }
 
 
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring3(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int begin = 0, end = 0, counter = 0, d = 0;
 
@@ -134,5 +143,5 @@ public class LongestUniqueSubstring {
         }
         return d;
     }
-     */
+
 }
