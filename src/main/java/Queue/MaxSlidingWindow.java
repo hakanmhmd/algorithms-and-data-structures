@@ -78,7 +78,7 @@ public class MaxSlidingWindow {
 
         int index  = 0;
         for (int i = 0; i < a.length; i++) {
-            while (!deque.isEmpty() && deque.peek() < i-k+1) // Ensure deque's size doesn't exceed k
+            if (!deque.isEmpty() && deque.peek() == i-k) // Ensure deque's size doesn't exceed k
                 deque.poll();
 
             // Remove numbers smaller than a[i] from right(a[i-1]) to left,

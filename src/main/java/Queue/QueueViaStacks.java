@@ -1,4 +1,4 @@
-package Stack;
+package Queue;
 
 /**
  * Implement a queue using stacks

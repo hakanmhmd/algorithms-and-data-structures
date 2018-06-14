@@ -16,7 +16,7 @@ public class ReverseNumber {
             x = x * -1;
         }
         int result = 0;
-        int n =x;
+        int n = x;
         while(n != 0){
             int rem = n % 10;
             int reversedNumber = result * 10 + rem;
@@ -29,7 +29,7 @@ public class ReverseNumber {
 
         }
 
-        if(negative) return (int) result * -1;
-        else return (int) result;
+        if(negative) return result * -1;
+        else return result;
     }
 }

@@ -1,5 +1,6 @@
 package Arrays;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,9 +14,10 @@ public class KdiffPairs {
         int[] nums = {3, 1, 4, 1, 5};
         int k = 2;
         System.out.println(findPairs(nums, k));
+        System.out.println(findPairsPointers(nums, k));
     }
 
-    public static int findPairs(int[] nums, int k) {
+    private static int findPairs(int[] nums, int k) {
         if (nums == null || nums.length == 0 || k < 0)   return 0;
 
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -33,5 +35,29 @@ public class KdiffPairs {
         }
 
         return count;
+    }
+
+    private static int findPairsPointers(int[] nums, int k){
+        Arrays.sort(nums);
+        int i=0; int j = 1;
+        int res = 0;
+        while(j<nums.length){
+            j = Math.max(i+1, j);
+            while(j < nums.length && nums[j] - nums[i] < k){
+                j++;
+            }
+
+            if(j<nums.length && nums[j] - nums[i] == k){
+                res++;
+            }
+
+            i++;
+            while(i<nums.length && nums[i] == nums[i-1]){
+                i++;
+            }
+        }
+
+        return res;
+
     }
 }

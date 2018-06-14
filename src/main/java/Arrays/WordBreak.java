@@ -32,8 +32,10 @@ public class WordBreak {
         boolean[] f = new boolean[n+1];
         f[0] = true;
 
+        // can prune if the string in consideration becomes longer than the longest string in dict
+        // j = i-1; j>=max(0, i-maxlen); j--
         for(int i=1; i<=s.length(); i++){
-            for(int j=0; j<i; j++){
+            for(int j=0; j<=i-1; j++){
                 if(!f[j]) continue;
                 String prefix = s.substring(j, i);
                 //System.out.println(prefix);
