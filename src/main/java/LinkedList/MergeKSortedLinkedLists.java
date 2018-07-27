@@ -43,7 +43,7 @@ public class MergeKSortedLinkedLists {
         }
         while (!queue.isEmpty()){
             LinkedListNode n = queue.poll();
-            p.next = n;
+            p.next = new LinkedListNode(n.data);
             p = p.next;
             if(n.next!=null){
                 queue.offer(n.next);
