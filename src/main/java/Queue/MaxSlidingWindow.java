@@ -9,19 +9,6 @@ import java.util.Scanner;
  */
 public class MaxSlidingWindow {
     public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        int n = in.nextInt();
-//        int q = in.nextInt();
-//        int[] arr = new int[n];
-//        for(int i=0; i<n; i++){
-//            arr[i] = in.nextInt();
-//        }
-//
-//        for(int x=0; x<q; x++){
-//            int window = in.nextInt();
-//            System.out.println(minSlidingWindowMax(arr, window));
-//        }
-
         int[] arr = {1,3,-1,-3,5,3,6,7};
         System.out.println(Arrays.toString(maxSlidingWindow(arr, 3)));
     }
@@ -78,18 +65,18 @@ public class MaxSlidingWindow {
 
         int index  = 0;
         for (int i = 0; i < a.length; i++) {
-            if (!deque.isEmpty() && deque.peek() == i-k) // Ensure deque's size doesn't exceed k
+            if (!deque.isEmpty() && deque.size() >= k) // Ensure deque's size doesn't exceed k
                 deque.poll();
 
             // Remove numbers smaller than a[i] from right(a[i-1]) to left,
             // to make the first number in the deque the largest one in the window
-            while (!deque.isEmpty() && a[deque.peekLast()] < a[i])
+            while (!deque.isEmpty() && deque.peekLast() < a[i])
                 deque.pollLast();
 
-            deque.offer(i);// Offer the current index to the deque's tail
+            deque.offer(a[i]);// Offer the current num to the deque's tail
 
             if (i >= k - 1)// Starts recording when i is big enough to make the window has k elements
-                res[index++] = a[deque.peek()];
+                res[index++] = deque.peek();
         }
         return res;
     }

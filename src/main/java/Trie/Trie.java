@@ -1,5 +1,8 @@
 package Trie;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Trie data structure
  * Used for efficient information retrieval O(m) where is m is the string length
@@ -18,10 +21,10 @@ public class Trie {
             if(current.children[ch] == null){
                 current.children[ch] = new TrieNode();
             }
-            current.prefixes++;
+            current.prefixes.add(key);
             current = current.children[ch];
         }
-        current.prefixes++;
+        current.prefixes.add(key);
         current.isEnd = true;
     }
 
@@ -35,17 +38,17 @@ public class Trie {
         return (current != null && current.isEnd);
     }
 
-    static int wordsWithPrefix(String prefix){
+    static ArrayList<String> wordsWithPrefix(String prefix){
         TrieNode current = root;
         for(int i=0; i<prefix.length(); i++){
             int ch = prefix.charAt(i) - 'a';
             if(current.children[ch] == null){
-                return 0;
+                return new ArrayList<>();
             }
             current = current.children[ch];
         }
         if(current == null) {
-            return 0;
+            return new ArrayList<>();
         }
         return current.prefixes;
     }

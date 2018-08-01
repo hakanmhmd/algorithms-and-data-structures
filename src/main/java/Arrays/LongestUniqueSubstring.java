@@ -57,6 +57,7 @@ public class LongestUniqueSubstring {
 
             end++;
         }
+
         if(end - start > result){
             result = end-start;
             substringStart = start;

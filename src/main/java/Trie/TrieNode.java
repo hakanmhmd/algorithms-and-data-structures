@@ -1,5 +1,7 @@
 package Trie;
 
+import java.util.ArrayList;
+
 /**
  * Node of a trie
  */
@@ -7,10 +9,11 @@ public class TrieNode {
     static final int ALPHABET_SIZE = 26;
     public TrieNode[] children;
     public boolean isEnd;
-    public int prefixes;
+    public ArrayList<String> prefixes;
+
 
     public TrieNode(){
-        prefixes = 0;
+        prefixes = new ArrayList<>();
         isEnd = false;
         children = new TrieNode[ALPHABET_SIZE];
         for(int i=0; i<ALPHABET_SIZE; i++){

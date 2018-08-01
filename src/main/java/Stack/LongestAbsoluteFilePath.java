@@ -8,20 +8,19 @@ import java.util.Stack;
 public class LongestAbsoluteFilePath {
     public static void main(String[] args) {
         String s = "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext";
-
         System.out.println(longestPath(s));
     }
 
     private static int longestPath(String s) {
         String[] split = s.split("\n");
-        Stack<Integer> stack = new Stack<>();
+        Stack<int[]> stack = new Stack<>();
         int currentLen = 0;
         int maxLen = 0;
         for(String str : split){
             int level = findLevel(str);
 
-            while(stack.size() > level){
-                currentLen -= stack.pop();
+            while(!stack.isEmpty() && stack.peek()[0] >= level){
+                currentLen -= stack.pop()[1];
             }
 
             int len = str.replaceAll("\t", "").length()+1;
@@ -31,7 +30,7 @@ public class LongestAbsoluteFilePath {
                 // file
                 maxLen = Math.max(maxLen, currentLen-1);
             }
-            stack.push(len);
+            stack.push(new int[]{level, len});
         }
 
         return maxLen;

@@ -45,6 +45,7 @@ public class WordBreak {
                 }
             }
         }
+        System.out.println(Arrays.toString(f));
 
         return f[n];
     }
@@ -72,7 +73,7 @@ public class WordBreak {
             maxLen = Math.max(maxLen, s1.length());
         }
         for(int i=1; i<=s.length(); i++){
-            for(int j=i-1; j>=i-maxLen && j>=0; j--){
+            for(int j=0; j>=i-maxLen && j>=0; j--){
                 if(starting[j] == null) continue;
                 String word = s.substring(j, i);
                 if(wordDict.contains(word)){

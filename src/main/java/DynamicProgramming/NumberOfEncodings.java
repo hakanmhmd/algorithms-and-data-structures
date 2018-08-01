@@ -19,7 +19,6 @@ public class NumberOfEncodings {
 
     private static int encodings(String s) {
         return s.isEmpty() ? 0 : encodings(0, s);
-
     }
 
     static int encodings(int i, String s){
